@@ -19,15 +19,19 @@ import matplotlib.pyplot as plt
 DATA_DIR = Path(__file__).parent / "data/"
 IMAGE_DIR = DATA_DIR / "images/"
 
+DF_TRAIN = pd.read_csv(DATA_DIR / 'train.csv', index_col='id')
+
 ROOF_NORTH_SOUTH = 1
 ROOF_WEST_EAST = 2
 ROOF_FLAT = 3
 ROOF_UNKNOWN = 4
 
-DF_TRAIN = pd.read_csv(DATA_DIR / 'train.csv', index_col='id')
-CLASSES = (ROOF_NORTH_SOUTH, ROOF_WEST_EAST,
-           ROOF_FLAT, ROOF_UNKNOWN)
-
+CLASSES = {
+    ROOF_NORTH_SOUTH: 'North-South',
+    ROOF_WEST_EAST: 'West-East',
+    ROOF_FLAT: 'Flat',
+    ROOF_UNKNOWN: 'Unknown',
+}
 
 def get_images_ids():
     """Get the IDs from the file names in the IMAGE_DIR directory."""
@@ -96,7 +100,7 @@ class SolarMapDatas(torch.utils.data.Dataset):
 
             im = im.resize((WIDTH, HEIGHT), resample=PIL.Image.ANTIALIAS)
             images_asarray.append(np.asarray(im))
-            labels.append(i)
+            labels.append(DF_TRAIN.loc[i])
 
             if self.verbose and (counter != 0) and ((counter % 1000) == 0):
                 print("{}th image loaded.".format(counter))
