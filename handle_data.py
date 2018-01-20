@@ -196,6 +196,11 @@ class SolarMapVisu(SolarMapDatas):
         images, labels = dataiter.next()
 
         # Show images
+        classes = []
+        for i in range(len(labels)):
+            classes.append(CLASSES[labels[i][0]])
+
+        plt.title(' ; '.join(tuple(classes)))
         self.imshow(torchvision.utils.make_grid(images, **kwargs))
 
     def plot_images_sizes_distrib(self):
