@@ -1,29 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os
-import pandas as pd
+import random
 import numpy as np
-from handle_data import (DATA_DIR, load_raw_images, get_images_ids,
-                         ROOF_NORTH_SOUTH, ROOF_WEST_EAST,
-                         ROOF_UNKNOWN, ROOF_FLAT,
-                         )
 
+from handle_data import SolarMapDatas, IDS_TRAIN, IDS_SUBMIT, IDS, CLASSES
+
+from torchvision import transforms
 import torch
-import torchvision
-import torchvision.transforms as transforms
-
-import torch.utils.data as data
-
 import torch.nn as nn
 import torch.nn.functional as F
+from torch.autograd import Variable
 
-from keras.applications import VGG16
-from keras.optimizers import SGD
+import torch.optim as optim
 
-import PIL
-from PIL import Image
+# from keras.applications import VGG16
+# from keras.optimizers import SGD
 
+
+# Let's get inspired from http://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
 
 class CNN(nn.Module):
     def __init__(self, n_classes):
@@ -72,3 +67,77 @@ class CNN(nn.Module):
         acc = 100 * torch.sum(torch.eq(indices.float(),
                                        y.float()).float()) / y.size()[0]
         return acc.cpu().data[0]
+
+
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.fc1 = nn.Linear(16 * 5 * 5, 120)
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, 10)
+
+    def forward(self, x):
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+        x = x.view(-1, 16 * 5 * 5)
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+
+
+percentage_train = 70./100.
+lst_ids_train = random.sample(set(IDS_TRAIN), int(len(IDS_TRAIN)*percentage_train))
+lst_ids_test = IDS_TRAIN.difference(lst_ids_train)
+
+
+net = Net()
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+
+
+transform = transforms.Compose(
+    [transforms.ToTensor(),
+     transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
+trainset = SolarMapDatas(lst_ids=lst_ids_train, transform=transform,
+                         limit_load=None)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=4,
+                                          shuffle=True, num_workers=2)
+
+testset = SolarMapDatas(lst_ids=lst_ids_test, transform=transform)
+testloader = torch.utils.data.DataLoader(testset, batch_size=4,
+                                         shuffle=False, num_workers=2)
+
+
+print('Beginning Training ...')
+for epoch in range(2):  # loop over the dataset multiple times
+
+    running_loss = 0.0
+    for i, data in enumerate(trainloader, 0):
+        # get the inputs
+        inputs, labels = data
+
+        # wrap them in Variable
+        inputs, labels = Variable(inputs), Variable(labels)
+
+        # zero the parameter gradients
+        optimizer.zero_grad()
+
+        # forward + backward + optimize
+        outputs = net(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+
+        # print statistics
+        running_loss += loss.data[0]
+        if i % 200 == 199:    # print every 2000 mini-batches
+            print('[%d, %5d] loss: %.3f' %
+                  (epoch + 1, i + 1, running_loss / 2000))
+            running_loss = 0.0
+
+print('Finished Training')

@@ -49,7 +49,8 @@ IDS = pd.Index(get_images_ids())
 IDS_TRAIN = DF_TRAIN.index
 IDS_SUBMIT = IDS.difference(IDS_TRAIN)
 
-WIDTH, HEIGHT = 96, 96
+# WIDTH, HEIGHT = 96, 96
+WIDTH, HEIGHT = 32, 32
 
 # transform = torchvision.transforms.Compose(
 #     [torchvision.transforms.ToTensor(),
@@ -85,7 +86,7 @@ class SolarMapDatas(torch.utils.data.Dataset):
             pass
 
         if self.mode == 'train-test':
-            self.images, np_data, labels = \
+            self.images, self.np_data, self.labels = \
                 self.load_raw_images(self.lst_ids)
         elif self.mode == 'submit':
             self.images, self.np_data, _ = \
@@ -93,9 +94,9 @@ class SolarMapDatas(torch.utils.data.Dataset):
 
     def guess_mode(self, lst_ids):
         """Guess the purpose of instanciated class based on lst_ids given"""
-        if np.isin(IDS_TRAIN, lst_ids).all():
+        if pd.Index(lst_ids).isin(IDS_TRAIN).all():
             mode = 'train-test'
-        elif np.isin(IDS_SUBMIT, lst_ids).all():
+        elif pd.Index(lst_ids).isin(IDS_SUBMIT).all():
             mode = 'submit'
         else:
             assert False
@@ -121,7 +122,7 @@ class SolarMapDatas(torch.utils.data.Dataset):
             images_asarray.append(np.asarray(im))
 
             if self.mode == 'train-test':
-                labels.append(DF_TRAIN.loc[i])
+                labels.append(int(DF_TRAIN.loc[i]))
 
             if self.verbose and (counter != 0) and ((counter % 1000) == 0):
                 print("{}th image loaded.".format(counter))
@@ -134,7 +135,6 @@ class SolarMapDatas(torch.utils.data.Dataset):
 
         images_asarray = np.concatenate(images_asarray)
         images_asarray = images_asarray.reshape((num_images, WIDTH, HEIGHT, 3))
-        labels = np.array(labels)
         return images, images_asarray, labels
 
     def __getitem__(self, index):
@@ -143,21 +143,24 @@ class SolarMapDatas(torch.utils.data.Dataset):
             index (int): Index
 
         Returns:
-            tuple: (image, target) where image is a torch.FloatTensor and
-                   target is index of the target class.
+            tuple: (image, target) where target is index of the target class.
         """
+        if self.mode == 'train-test':
+            img, target = self.np_data[index], self.labels[index]
+        else:
+            img = self.np_data[index]
 
-        img = self.np_data[index]
+        # doing this so that it is consistent with all other datasets
+        # to return a PIL Image
+        img = PIL.Image.fromarray(img)
 
         if self.transform is not None:
             img = self.transform(img)
-
-        # Always assure that tensor is returned:
-        transf = transforms.Compose([transforms.ToTensor()])
-        img = transf(img)
+        else:
+            transf = transforms.Compose([transforms.ToTensor()])
+            img = transf(img)
 
         if self.mode == 'train-test':
-            target = self.labels[index]
             return img, target
         else:
             return img
@@ -199,9 +202,6 @@ class SolarMapVisu(SolarMapDatas):
                                                   num_workers=num_workers)
 
     def imshow(self, img):
-        # img = img / 2 + 0.5  # unnormalize
-        # npimg = img.numpy()
-        # plt.imshow(np.transpose(npimg, (1, 2, 0)))
         transf = transforms.Compose([transforms.ToPILImage()])
         PIL_img = transf(img)
         plt.imshow(PIL_img)
@@ -210,14 +210,18 @@ class SolarMapVisu(SolarMapDatas):
         """cf torchvision.utils.make_grid for args."""
         # Get some random training images
         dataiter = iter(self.loader)
-        images, labels = dataiter.next()
 
-        # Show images
-        classes = []
-        for i in range(len(labels)):
-            classes.append(CLASSES[labels[i][0]])
+        if self.mode == 'train-test':
+            images, labels = dataiter.next()
+            # Show images
+            classes = []
+            for i in range(len(labels)):
+                classes.append(CLASSES[labels[i]])
+            plt.title(' ; '.join(tuple(classes)))
 
-        plt.title(' ; '.join(tuple(classes)))
+        else:
+            images = dataiter.next()
+
         self.imshow(torchvision.utils.make_grid(images, **kwargs))
 
     def plot_images_sizes_distrib(self):
