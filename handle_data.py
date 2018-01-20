@@ -2,109 +2,209 @@
 # -*- coding: utf-8 -*-
 
 import re
+import os
 from pathlib import Path
 
 import pandas as pd
 import numpy as np
 
-from PIL import Image
+import torch
+import torchvision
+from torchvision import transforms
+import PIL
+
 
 import matplotlib.pyplot as plt
 
 DATA_DIR = Path(__file__).parent / "data/"
 IMAGE_DIR = DATA_DIR / "images/"
 
-IMAGE_FILES = [f.as_posix() for f in IMAGE_DIR.iterdir()]
-N = len(IMAGE_FILES)
-
 ROOF_NORTH_SOUTH = 1
 ROOF_WEST_EAST = 2
 ROOF_FLAT = 3
 ROOF_UNKNOWN = 4
 
+DF_TRAIN = pd.read_csv(DATA_DIR / 'train.csv', index_col='id')
+CLASSES = (ROOF_NORTH_SOUTH, ROOF_WEST_EAST,
+           ROOF_FLAT, ROOF_UNKNOWN)
+
 
 def get_images_ids():
     """Get the IDs from the file names in the IMAGE_DIR directory."""
+    images_files = [f.as_posix() for f in IMAGE_DIR.iterdir()]
     # Extract the image IDs from the file names. They will serve as an index later
-    image_ids = [int(re.sub(r'(^.*/|\.jpg)', '', fname)) for fname in IMAGE_FILES]
+    image_ids = [int(re.sub(r'(^.*/|\.jpg)', '', fname))
+                 for fname in images_files]
     return image_ids
 
 
-def load_raw_images(n_limit=None):
-    """Load the raw images.
+IDS = pd.Index(get_images_ids())
 
-    :n_limit: integer, limit of images to load. If None, load all.
-    :returns: dict of <PIL.JpegImageFile>
-    """
-    images = {}
-    image_ids = get_images_ids()
-    for i, fname in enumerate(IMAGE_FILES):
-        # Stop if n_limit defined:
-        if n_limit is not None and i >= n_limit:
-            break
+IDS_TRAIN = DF_TRAIN.index
+IDS_TEST = IDS.difference(IDS_TRAIN)
 
-        # Verbosity:
-        if (i != 0) and not (i % 1000):
-            print("Loading {} th image".format(i))
+WIDTH, HEIGHT = 96, 96
 
-        # Get the ID of the image
-        iid = image_ids[i]
-        # Raw image
-        image = Image.open(fname)
-        image.load()
-        images[iid] = image
-
-    return images
+# transform = torchvision.transforms.Compose(
+#     [torchvision.transforms.ToTensor(),
+#         torchvision.transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
+# )
 
 
-def display_images(images, ids_display=None):
-    """Display images with matplotlib for which id is in ids_display."""
-    # Getting number of subplots:
-    if ids_display is None:
-        rows, cols = 2, 3
-        # Selecting randomly rows*cols ids that exists in images:
-        ids_display = [list(images.keys())[np.random.randint(0, rows * cols)]
-                       for i in range(rows * cols)]
-    else:
-        quotient, remainder = divmod(len(ids_display), int(np.sqrt(len(ids_display))))
-        rows = quotient
-        cols = quotient + remainder
+class SolarMapDatas(torch.utils.data.Dataset):
+    """Base class to handle datas for SolarMap Challenge."""
 
-    fig, axes = plt.subplots(nrows=rows, ncols=cols)
-    samples = []
-    i = 0
-    while i < len(ids_display):
-        ax = axes[int(i / cols), i % cols]
-        ax.get_xaxis().set_visible(False)
-        ax.get_yaxis().set_visible(False)
+    base_folder = 'images'
+    # cf torchvision/torchvision/datasets/cifar.py for example
 
-        ax.imshow(images[ids_display[i]])
-        samples.append(ids_display[i])
-        i += 1
+    def __init__(self, root='./data',
+                 train=True, limit_load=None,
+                 transform=None, target_transform=None,
+                 download=False,
+                 verbose=True):
+        self.root = os.path.expanduser(root)
+        self.transform = transform
+        self.target_transform = target_transform
+        self.train = train
+        self.verbose = verbose
+        self.limit_load = np.inf if limit_load is None else limit_load
 
-    return fig, axes
+        if download:
+            # TODO
+            pass
+
+        if self.train:
+            self.images, self.train_data, self.train_labels = \
+                self.load_raw_images(IDS_TRAIN)
+        else:
+            self.images, self.test_data, self.test_labels = \
+                self.load_raw_images(IDS_TEST)
+
+    def load_raw_images(self, lst_ids):
+        images = {}
+        images_asarray = []
+        labels = []
+
+        counter = 0
+        for i in lst_ids:
+            f = '{id}.jpg'.format(id=i)
+            fname = os.path.join(self.root, self.base_folder, f)
+            im = PIL.Image.open(fname)
+            im.load()
+
+            images[i] = im
+
+            im = im.resize((WIDTH, HEIGHT), resample=PIL.Image.ANTIALIAS)
+            images_asarray.append(np.asarray(im))
+            labels.append(i)
+
+            if self.verbose and (counter != 0) and ((counter % 1000) == 0):
+                print("{}th image loaded.".format(counter))
+
+            counter += 1
+            if counter > self.limit_load - 1:
+                break
+
+        num_images = min(len(lst_ids), self.limit_load)
+
+        images_asarray = np.concatenate(images_asarray)
+        images_asarray = images_asarray.reshape((num_images, WIDTH, HEIGHT, 3))
+        labels = np.array(labels)
+        return images, images_asarray, labels
+
+    def __getitem__(self, index):
+        """
+        Args:
+            index (int): Index
+
+        Returns:
+            tuple: (image, target) where image is a torch.FloatTensor and
+                   target is index of the target class.
+        """
+        if self.train:
+            img, target = self.train_data[index], self.train_labels[index]
+        else:
+            img, target = self.test_data[index], self.test_labels[index]
+
+        if self.transform is not None:
+            img = self.transform(img)
+
+        if self.target_transform is not None:
+            target = self.target_transform(target)
+
+        transf = transforms.Compose([transforms.ToTensor()])
+        img = transf(img)
+
+        return img, target
+
+    def __len__(self):
+        if self.train:
+            return len(self.train_data)
+        else:
+            return len(self.test_data)
+
+    def _check_integrity(self):
+        # TODO
+        pass
+
+    def download(self):
+        # TODO
+        pass
+
+    def __repr__(self):
+        fmt_str = 'Dataset ' + self.__class__.__name__ + '\n'
+        fmt_str += '    Number of datapoints: {}\n'.format(self.__len__())
+        tmp = 'train' if self.train is True else 'test'
+        fmt_str += '    Split: {}\n'.format(tmp)
+        fmt_str += '    Root Location: {}\n'.format(self.root)
+        tmp = '    Transforms (if any): '
+        fmt_str += '{0}{1}\n'.format(
+            tmp, self.transform.__repr__().replace('\n', '\n' + ' ' * len(tmp)))
+        tmp = '    Target Transforms (if any): '
+        fmt_str += '{0}{1}'.format(
+            tmp, self.target_transform.__repr__().replace('\n', '\n' + ' ' * len(tmp)))
+        return fmt_str
 
 
-def plot_images_sizes_distribution(images):
-    """Plot the average image size distribution heigths, widths.
+class SolarMapVisu(SolarMapDatas):
+    """Base class to get plots done."""
 
-    :images: dict of <PIL.JpegImageFile>
-    :returns: fig matplotlib objects.
-    """
+    def __init__(self, batch_size=4, shuffle=True, num_workers=2,
+                 *a, **kwargs):
+        super().__init__(*a, **kwargs)
+        self.loader = torch.utils.data.DataLoader(self,
+                                                  batch_size=batch_size,
+                                                  shuffle=shuffle,
+                                                  num_workers=num_workers)
 
-    widths = [im.size[0] for im in images.values()]
-    heights = [im.size[1] for im in images.values()]
+    def imshow(self, img):
+        # img = img / 2 + 0.5  # unnormalize
+        # npimg = img.numpy()
+        # plt.imshow(np.transpose(npimg, (1, 2, 0)))
+        transf = transforms.Compose([transforms.ToPILImage()])
+        PIL_img = transf(img)
+        plt.imshow(PIL_img)
 
-    fig = plt.figure(figsize=(6, 6))
-    plt.scatter(widths, heights, s=0.5)
-    plt.axis('equal')
-    plt.xlim([0, 200])
-    plt.ylim([0, 200])
-    plt.title('Image sizes')
-    plt.xlabel('Width')
-    plt.ylabel('Height')
+    def plot_images(self, **kwargs):
+        """cf torchvision.utils.make_grid for args."""
+        # Get some random training images
+        dataiter = iter(self.loader)
+        images, labels = dataiter.next()
 
-    # Average image size (width, height)
-    sum(widths) / N, sum(heights) / N
+        # Show images
+        self.imshow(torchvision.utils.make_grid(images, **kwargs))
 
-    return fig
+    def plot_images_sizes_distrib(self):
+        widths = [im.size[0] for im in self.images.values()]
+        heights = [im.size[1] for im in self.images.values()]
+
+        fig = plt.figure(figsize=(6, 6))
+        plt.scatter(widths, heights, s=0.5)
+        plt.axis('equal')
+        plt.xlim([0, 200])
+        plt.ylim([0, 200])
+        plt.title('Image sizes')
+        plt.xlabel('Width')
+        plt.ylabel('Height')
+
+        return fig
