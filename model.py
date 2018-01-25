@@ -4,8 +4,11 @@
 import random
 import numpy as np
 import pandas as pd
+from datetime import datetime
 
-from handle_data import SolarMapVisu, IDS_TRAIN, IDS_SUBMIT, IDS, CLASSES
+from handle_data import (SolarMapVisu,
+                         IDS_TRAIN, IDS_SUBMIT, IDS, CLASSES,
+                         SUBMISSION_DIR)
 
 from torchvision import transforms
 import torch
@@ -116,7 +119,11 @@ class SolarMapModel():
             self.testset, batch_size=4, shuffle=True, num_workers=4)
 
         self.cnn = cnn
-        self.mode = self.trainset.mode
+        self.mode = self.testset.mode
+
+        self.df_classe_train = self.trainset.df_classe
+        if self.testset.mode == 'train-test':
+            self.df_classe_test = self.testset.df_classe
 
     def train(self):
         criterion = nn.CrossEntropyLoss()
@@ -169,61 +176,64 @@ class SolarMapModel():
                 predicted_dict[ids_images[i*num_workers+j]] = pred[j]
 
             if i % 200 == 199:    # print every 2000 mini-batches
-                print('Predicting {image}th image:  {precentage}% ...'.
+                print('Predicting {image}th image:  {percentage}% ...'.
                       format(image=i + 1, percentage=len(self.testloader) / i))
 
         self.predicted = predicted
         self.predicted_dict = predicted_dict
 
     def compute_scores(self, ):
+        """Compute average & area under curve ROC. Only possible if 'train-test'
+        mode."""
         assert self.mode == 'train-test'
 
         y_true = self.testset.labels
         y_scores = self.predicted
+        # Accuracy compute:
+        tmp = []
+        for i in range(len(y_true)):
+            tmp.append(y_true[i] == y_scores[i])
+
+        self.accuracy = sum(tmp)/len(y_true)
 
         self.score = average_precision_score(y_true, y_scores, average='micro')
 
-        tmp = []
-        for i in range(len(y_true)):
-            tmp.append(y_true[i] - y_scores[i])
 
-        self.accuracy = self.pred
+    def one_to_four_class(self):
+        """Function in the case of only predicting a class (i.e 0 or 1) to create
+        the pandas dataframe equivalent to compare with testset.df_classe.
+        """
+        df_classe_pred = pd.DataFrame(
+            index=pd.Index(self.testset.lst_ids),
+            columns=list(CLASSES.values()))
+
+        for key in self.predicted_dict:
+            df_classe_pred.loc[key][CLASSES[self.predicted_dict[key]]] = 1.
+
+        self.df_classe_pred = df_classe_pred.fillna(0.)
+
+    def write_submission_file(self):
+        """Write submission file inside submission/ directory with standardized
+        name & informations on self.cnn used.
+        """
+        now = datetime.now()
+        path_res = SUBMISSION_DIR / 'sub_{now}.csv'.format(now=now.strftime('%d_%m_%Y_H%H_%M_%S'))
+        path_cnn = SUBMISSION_DIR / 'net_{now}.txt'.format(now=now.strftime('%d_%m_%Y_H%H_%M_%S'))
+
+        f_cnn = open(path_cnn.as_posix(), 'w')
+        f_cnn.write(str(self.cnn))
+
+        self.df_classe_pred.to_csv(path_res)
 
 
-        # ids_images = self.testset.lst_ids_test
-        # classe_predicted[]
-        # for i in range(len(ids_images)):
-        #     classe_predicted.append(self.predicted_dict[ids_images[i]]])
-
-
-    def write_submission_file(self, ):
         pass
-
-    def test(self):
-        correct = 0
-        total = 0
-        print('Beginning Testing...')
-        for i, data in enumerate(self.testloader, 0):
-            # get the inputs
-            inputs, labels = data
-
-            outputs = self.cnn(Variable(inputs))
-            _, predicted = torch.max(outputs.data, 1)
-            total += labels.size(0)
-            correct += (predicted == labels).sum()
-
-        from IPython import embed
-        embed()  # Enter Ipython
-        self.acc = 100 * correct / total
-        print('Accuracy of the network on the {ntest_images} test images: {acc}%'
-              .format(ntest_images=len(self.testset), acc=self.acc))
-
 
 net = Net()
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
-qmodel = SolarMapModel(cnn=net, transform=transform, limit_load=100)
-from IPython import embed; embed() # Enter Ipython
+# qmodel = SolarMapModel(cnn=net, transform=transform, limit_load=100)
+# qmodel.train()
+# qmodel.compute_prediction()
 model = SolarMapModel(cnn=net, transform=transform)

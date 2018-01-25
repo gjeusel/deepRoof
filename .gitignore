@@ -6,3 +6,5 @@ data/benchmark.ipynb
 data/.ipynb_checkpoints/*
 *.pyc
 notebooks/.ipynb_checkpoints/*
+
+submission/*

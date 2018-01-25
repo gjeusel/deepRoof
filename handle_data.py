@@ -18,6 +18,7 @@ import PIL
 
 import matplotlib.pyplot as plt
 
+SUBMISSION_DIR = Path(__file__).parent / "submission/"
 DATA_DIR = Path(__file__).parent / "data/"
 IMAGE_DIR = DATA_DIR / "images/"
 
@@ -91,6 +92,17 @@ class SolarMapDatas(torch.utils.data.Dataset):
         elif self.mode == 'submit':
             self.images, self.np_data, _ = \
                 self.load_raw_images(self.lst_ids)
+
+        # Construct df classes reference
+        if self.mode == 'train-test':
+            df_classes = pd.DataFrame(
+                index=pd.Index(lst_ids),
+                columns=list(CLASSES.values()))
+            for i in range(len(self.labels)):
+                n_classe = self.labels[i]
+                idx_image = self.lst_ids[i]
+                df_classes.loc[idx_image][CLASSES[n_classe]] = 1.
+            self.df_classe = df_classes.fillna(0.)
 
     def guess_mode(self, lst_ids):
         """Guess the purpose of instanciated class based on lst_ids given"""
