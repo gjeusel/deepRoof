@@ -27,76 +27,26 @@ from sklearn.metrics import average_precision_score
 # Let's get inspired from http://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
 
 class CNN(nn.Module):
-    def __init__(self, n_classes):
+    def __init__(self):
         super(CNN, self).__init__()
-        # conv layers: (in_channel size, out_channels size, kernel_size, stride, padding)
-        self.conv1 = nn.Conv2d(1, 32, 5, stride=1, padding=2)
-        self.conv2 = nn.Conv2d(32, 16, 5, stride=1, padding=2)
-        self.conv3 = nn.Conv2d(16, 8, 5, stride=1, padding=2)
-
-        # max pooling (kernel_size, stride)
-        self.pool = nn.MaxPool2d(2, 2)
-
-        # fully conected layers:
-        self.layer1 = nn.Linear(4 * 4 * 8, 64)
-        self.layer2 = nn.Linear(64, 64)
-        self.layer3 = nn.Linear(64, n_classes)
+        self.layer1 = nn.Sequential(
+            nn.Conv2d(1, 16, kernel_size=5, padding=2),
+            nn.BatchNorm2d(16),
+            nn.ReLU(),
+            nn.MaxPool2d(2))
+        self.layer2 = nn.Sequential(
+            nn.Conv2d(16, 32, kernel_size=5, padding=2),
+            nn.BatchNorm2d(32),
+            nn.ReLU(),
+            nn.MaxPool2d(2))
+        self.fc = nn.Linear(7*7*32, 4)
 
     def forward(self, x, training=True):
-        # the autoencoder has 3 con layers and 3 deconv layers (transposed conv). All layers but the last have ReLu
-        # activation function
-        x = F.relu(self.conv1(x))
-        x = self.pool(x)
-        x = F.relu(self.conv2(x))
-        x = self.pool(x)
-        x = F.relu(self.conv3(x))
-        x = self.pool(x)
-        x = x.view(-1, 4 * 4 * 8)
-        x = F.relu(self.layer1(x))
-        x = F.dropout(x, 0.5, training=training)
-        x = F.relu(self.layer2(x))
-        x = F.dropout(x, 0.5, training=training)
-        x = self.layer3(x)
-        return x
-
-    def predict(self, x):
-        # a function to predict the labels of a batch of inputs
-        x = F.softmax(self.forward(x, training=False))
-        return x
-
-    def accuracy(self, x, y):
-        # a function to calculate the accuracy of label prediction for a batch of inputs
-        #   x: a batch of inputs
-        #   y: the true labels associated with x
-        prediction = self.predict(x)
-        maxs, indices = torch.max(prediction, 1)
-        acc = 100 * torch.sum(torch.eq(indices.float(),
-                                       y.float()).float()) / y.size()[0]
-        return acc.cpu().data[0]
-
-
-class Net(nn.Module):
-    def __init__(self):
-        super(Net, self).__init__()
-        self.conv1 = nn.Conv2d(3, 6, 5)
-        self.pool = nn.MaxPool2d(2, 2)
-        self.conv2 = nn.Conv2d(6, 16, 5)
-        self.fc1 = nn.Linear(16 * 5 * 5, 120)
-        self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10)
-
-    def forward(self, x):
-        x = self.pool(F.relu(self.conv1(x)))
-        x = self.pool(F.relu(self.conv2(x)))
-        x = x.view(-1, 16 * 5 * 5)
-        x = F.relu(self.fc1(x))
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)
-        return x
-
-    def predict(self, x):
-        # a function to predict the labels of a batch of inputs
-        x = F.softmax(self.forward(x, training=False))
+        out = self.layer1(x)
+        out = self.layer2(out)
+        out = out.view(out.size(0), -1)
+        out = self.fc(out)
+        return out
 
 
 class SolarMapModel():
@@ -127,7 +77,7 @@ class SolarMapModel():
 
         self.testset = SolarMapVisu(lst_ids=self.lst_ids_test, **kwargs)
         self.testloader = torch.utils.data.DataLoader(
-            self.testset, batch_size=4, shuffle=True, num_workers=4)
+            self.testset, batch_size=4, shuffle=False, num_workers=4)
 
         self.cnn = cnn
 
@@ -140,7 +90,7 @@ class SolarMapModel():
         optimizer = optim.SGD(self.cnn.parameters(), lr=0.001, momentum=0.9)
 
         print('Beginning Training ...')
-        for epoch in range(1):  # loop over the dataset multiple times
+        for epoch in range(10):  # loop over the dataset multiple times
 
             running_loss = 0.0
             for i, data in enumerate(self.trainloader):
@@ -258,14 +208,26 @@ class SolarMapModel():
         pass
 
 
-net = Net()
+net = CNN()
+
+# Hyper Parameters
+hyper_param = dict(
+    num_epochs=5,
+    batch_size=100,
+    learning_rate=0.001,
+    criterion=nn.CrossEntropyLoss(),
+)
+
+optimizer = torch.optim.Adam(net.parameters(), lr=hyper_param['learning_rate'])
+
+
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
-# qmodel = SolarMapModel(cnn=net, transform=transform, limit_load=100)
-# qmodel.train()
-# qmodel.compute_prediction()
+qmodel = SolarMapModel(cnn=net, transform=transform, limit_load=100)
+qmodel.train()
+qmodel.compute_prediction()
 # model = SolarMapModel(cnn=net, transform=transform)
 
-model = SolarMapModel(cnn=net, mode='submit', transform=transform)
+# model = SolarMapModel(cnn=net, mode='submit', transform=transform)
