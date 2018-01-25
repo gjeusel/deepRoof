@@ -36,6 +36,7 @@ CLASSES = {
     ROOF_UNKNOWN: 'Unknown',
 }
 
+
 def get_images_ids():
     """Get the IDs from the file names in the IMAGE_DIR directory."""
     images_files = [f.as_posix() for f in IMAGE_DIR.iterdir()]
@@ -52,11 +53,6 @@ IDS_SUBMIT = IDS.difference(IDS_TRAIN)
 
 # WIDTH, HEIGHT = 96, 96
 WIDTH, HEIGHT = 32, 32
-
-# transform = torchvision.transforms.Compose(
-#     [torchvision.transforms.ToTensor(),
-#         torchvision.transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]
-# )
 
 
 class SolarMapDatas(torch.utils.data.Dataset):
@@ -75,12 +71,11 @@ class SolarMapDatas(torch.utils.data.Dataset):
         self.root = os.path.expanduser(root)
         self.transform = transform
 
+        self.size = len(lst_ids) if limit_load is None else limit_load
+        self.lst_ids = lst_ids[:self.size]
+
         self.mode = self.guess_mode(lst_ids)
-
-        self.lst_ids = lst_ids
-
         self.verbose = verbose
-        self.limit_load = np.inf if limit_load is None else limit_load
 
         if download:
             # TODO
@@ -98,7 +93,7 @@ class SolarMapDatas(torch.utils.data.Dataset):
             df_classes = pd.DataFrame(
                 index=pd.Index(lst_ids),
                 columns=list(CLASSES.values()))
-            for i in range(len(self.labels)):
+            for i in range(self.size):
                 n_classe = self.labels[i]
                 idx_image = self.lst_ids[i]
                 df_classes.loc[idx_image][CLASSES[n_classe]] = 1.
@@ -138,15 +133,10 @@ class SolarMapDatas(torch.utils.data.Dataset):
 
             if self.verbose and (counter != 0) and ((counter % 1000) == 0):
                 print("{}th image loaded.".format(counter))
-
             counter += 1
-            if counter > self.limit_load - 1:
-                break
-
-        num_images = min(len(lst_ids), self.limit_load)
 
         images_asarray = np.concatenate(images_asarray)
-        images_asarray = images_asarray.reshape((num_images, WIDTH, HEIGHT, 3))
+        images_asarray = images_asarray.reshape((len(lst_ids), WIDTH, HEIGHT, 3))
         return images, images_asarray, labels
 
     def __getitem__(self, index):

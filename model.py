@@ -100,29 +100,39 @@ class Net(nn.Module):
 
 
 class SolarMapModel():
-    def __init__(self, cnn, **kwargs):
-        percentage_train = 70. / 100.
-        lst_ids_train = random.sample(
-            set(IDS_TRAIN), int(len(IDS_TRAIN) * percentage_train))
-        lst_ids_train = pd.Index(lst_ids_train)
-        lst_ids_test = IDS_TRAIN.difference(lst_ids_train)
+    def __init__(self, cnn, mode='train-test', **kwargs):
 
-        self.lst_ids_train = lst_ids_train
-        self.lst_ids_test = lst_ids_test
+        if mode == 'train-test':
+            percentage_train = 70. / 100.
+            lst_ids_train = random.sample(
+                set(IDS_TRAIN), int(len(IDS_TRAIN) * percentage_train))
+            lst_ids_train = pd.Index(lst_ids_train)
+            lst_ids_test = IDS_TRAIN.difference(lst_ids_train)
 
-        self.trainset = SolarMapVisu(lst_ids=lst_ids_train, **kwargs)
+            self.lst_ids_train = lst_ids_train
+            self.lst_ids_test = lst_ids_test
+
+        elif mode == 'submit':
+            self.lst_ids_train = IDS_TRAIN
+            self.lst_ids_test = IDS_SUBMIT
+
+        else:
+            assert False
+
+        self.mode = mode
+
+        self.trainset = SolarMapVisu(lst_ids=self.lst_ids_train, **kwargs)
         self.trainloader = torch.utils.data.DataLoader(
             self.trainset, batch_size=4, shuffle=True, num_workers=4)
 
-        self.testset = SolarMapVisu(lst_ids=lst_ids_test, **kwargs)
+        self.testset = SolarMapVisu(lst_ids=self.lst_ids_test, **kwargs)
         self.testloader = torch.utils.data.DataLoader(
             self.testset, batch_size=4, shuffle=True, num_workers=4)
 
         self.cnn = cnn
-        self.mode = self.testset.mode
 
         self.df_classe_train = self.trainset.df_classe
-        if self.testset.mode == 'train-test':
+        if mode == 'train-test':
             self.df_classe_test = self.testset.df_classe
 
     def train(self):
@@ -130,7 +140,7 @@ class SolarMapModel():
         optimizer = optim.SGD(self.cnn.parameters(), lr=0.001, momentum=0.9)
 
         print('Beginning Training ...')
-        for epoch in range(2):  # loop over the dataset multiple times
+        for epoch in range(1):  # loop over the dataset multiple times
 
             running_loss = 0.0
             for i, data in enumerate(self.trainloader):
@@ -166,14 +176,17 @@ class SolarMapModel():
         num_workers = self.testloader.num_workers
         for i, data in enumerate(self.testloader):
             # get the inputs
-            inputs, labels = data
+            if self.mode == 'train-test':
+                inputs, labels = data
+            elif self.mode == 'submit':
+                inputs = data
 
             outputs = self.cnn(Variable(inputs))
             _, pred = torch.max(outputs.data, 1)
 
             predicted += pred.tolist()
             for j in range(len(pred)):
-                predicted_dict[ids_images[i*num_workers+j]] = pred[j]
+                predicted_dict[ids_images[i * num_workers + j]] = pred[j]
 
             if i % 200 == 199:    # print every 2000 mini-batches
                 print('Predicting {image}th image:  {percentage}% ...'.
@@ -186,6 +199,7 @@ class SolarMapModel():
         """Compute average & area under curve ROC. Only possible if 'train-test'
         mode."""
         assert self.mode == 'train-test'
+        self.one_to_four_class()
 
         y_true = self.testset.labels
         y_scores = self.predicted
@@ -194,10 +208,21 @@ class SolarMapModel():
         for i in range(len(y_true)):
             tmp.append(y_true[i] == y_scores[i])
 
-        self.accuracy = sum(tmp)/len(y_true)
+        self.accuracy = sum(tmp) / len(y_true)
 
-        self.score = average_precision_score(y_true, y_scores, average='micro')
+        score = 0
+        for i in range(self.testset.size):
+            score += average_precision_score(
+                self.df_classe_pred.iloc[i].tolist(),
+                self.df_classe_test.iloc[i].tolist(),
+                average='micro'
+            )
 
+        self.score = score / self.testset.size
+
+        print('Accuracy : {acc}%'.format(acc=round(self.accuracy, 2)))
+        print('Micro-averave Precision : {score}'
+              .format(score=round(self.score, 2)))
 
     def one_to_four_class(self):
         """Function in the case of only predicting a class (i.e 0 or 1) to create
@@ -217,16 +242,21 @@ class SolarMapModel():
         name & informations on self.cnn used.
         """
         now = datetime.now()
-        path_res = SUBMISSION_DIR / 'sub_{now}.csv'.format(now=now.strftime('%d_%m_%Y_H%H_%M_%S'))
-        path_cnn = SUBMISSION_DIR / 'net_{now}.txt'.format(now=now.strftime('%d_%m_%Y_H%H_%M_%S'))
+        df_scores = self.df_classe_pred.copy()
+        df_scores.index.name = 'id'
+        df_scores.columns = CLASSES.keys()
+        path_res = SUBMISSION_DIR / \
+            'sub_{now}.csv'.format(now=now.strftime('%d_%m_%Y_H%H_%M_%S'))
+        path_cnn = SUBMISSION_DIR / \
+            'net_{now}.txt'.format(now=now.strftime('%d_%m_%Y_H%H_%M_%S'))
 
         f_cnn = open(path_cnn.as_posix(), 'w')
         f_cnn.write(str(self.cnn))
 
         self.df_classe_pred.to_csv(path_res)
 
-
         pass
+
 
 net = Net()
 transform = transforms.Compose(
@@ -236,4 +266,6 @@ transform = transforms.Compose(
 # qmodel = SolarMapModel(cnn=net, transform=transform, limit_load=100)
 # qmodel.train()
 # qmodel.compute_prediction()
-model = SolarMapModel(cnn=net, transform=transform)
+# model = SolarMapModel(cnn=net, transform=transform)
+
+model = SolarMapModel(cnn=net, mode='submit', transform=transform)
