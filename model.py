@@ -7,8 +7,9 @@ import pandas as pd
 from datetime import datetime
 
 from handle_data import (SolarMapVisu,
-                         IDS_TRAIN, IDS_SUBMIT, IDS, CLASSES,
-                         SUBMISSION_DIR)
+                         IDS_LABELED, IDS_SUBMIT, ALL_IDS, CLASSES,
+                         SUBMISSION_DIR,
+                         WIDTH, HEIGHT)
 
 from torchvision import transforms
 import torch
@@ -30,16 +31,16 @@ class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
         self.layer1 = nn.Sequential(
-            nn.Conv2d(1, 16, kernel_size=5, padding=2),
-            nn.BatchNorm2d(16),
+            nn.Conv2d(3, 16, kernel_size=2),
+            # nn.BatchNorm2d(16),
             nn.ReLU(),
             nn.MaxPool2d(2))
         self.layer2 = nn.Sequential(
-            nn.Conv2d(16, 32, kernel_size=5, padding=2),
-            nn.BatchNorm2d(32),
+            nn.Conv2d(16, 32, kernel_size=2),
+            # nn.BatchNorm2d(32),
             nn.ReLU(),
             nn.MaxPool2d(2))
-        self.fc = nn.Linear(7*7*32, 4)
+        self.fc = nn.Linear(7 * 7 * 32, 4)  # fully connected
 
     def forward(self, x, training=True):
         out = self.layer1(x)
@@ -54,36 +55,32 @@ class SolarMapModel():
 
         if mode == 'train-test':
             percentage_train = 70. / 100.
-            lst_ids_train = random.sample(
-                set(IDS_TRAIN), int(len(IDS_TRAIN) * percentage_train))
-            lst_ids_train = pd.Index(lst_ids_train)
-            lst_ids_test = IDS_TRAIN.difference(lst_ids_train)
+            ids_train = random.sample(
+                set(IDS_LABELED), int(len(IDS_LABELED) * percentage_train))
+            ids_train = pd.Index(ids_train)
+            ids_test = IDS_LABELED.difference(ids_train)
 
-            self.lst_ids_train = lst_ids_train
-            self.lst_ids_test = lst_ids_test
+            self.ids_train = ids_train
+            self.ids_test = ids_test
 
         elif mode == 'submit':
-            self.lst_ids_train = IDS_TRAIN
-            self.lst_ids_test = IDS_SUBMIT
+            self.ids_train = IDS_LABELED
+            self.ids_test = IDS_SUBMIT
 
         else:
             assert False
 
         self.mode = mode
 
-        self.trainset = SolarMapVisu(lst_ids=self.lst_ids_train, **kwargs)
+        self.trainset = SolarMapVisu(ids=self.ids_train, **kwargs)
         self.trainloader = torch.utils.data.DataLoader(
             self.trainset, batch_size=4, shuffle=True, num_workers=4)
 
-        self.testset = SolarMapVisu(lst_ids=self.lst_ids_test, **kwargs)
+        self.testset = SolarMapVisu(ids=self.ids_test, **kwargs)
         self.testloader = torch.utils.data.DataLoader(
             self.testset, batch_size=4, shuffle=False, num_workers=4)
 
         self.cnn = cnn
-
-        self.df_classe_train = self.trainset.df_classe
-        if mode == 'train-test':
-            self.df_classe_test = self.testset.df_classe
 
     def train(self):
         criterion = nn.CrossEntropyLoss()
@@ -105,7 +102,7 @@ class SolarMapModel():
 
                 # forward + backward + optimize
                 outputs = self.cnn(inputs)
-                loss = criterion(outputs, labels)
+                loss = criterion(outputs, labels-1) # criterion expect a class index from 0 to n_classes-1
                 loss.backward()
                 optimizer.step()
 
@@ -122,7 +119,7 @@ class SolarMapModel():
         print('Beginning Predicting ...')
         predicted_dict = {}
         predicted = []
-        ids_images = self.lst_ids_test
+        ids_images = self.ids_test
         num_workers = self.testloader.num_workers
         for i, data in enumerate(self.testloader):
             # get the inputs
@@ -133,6 +130,7 @@ class SolarMapModel():
 
             outputs = self.cnn(Variable(inputs))
             _, pred = torch.max(outputs.data, 1)
+            pred += 1 # Related to -1 in criterion
 
             predicted += pred.tolist()
             for j in range(len(pred)):
@@ -164,7 +162,7 @@ class SolarMapModel():
         for i in range(self.testset.size):
             score += average_precision_score(
                 self.df_classe_pred.iloc[i].tolist(),
-                self.df_classe_test.iloc[i].tolist(),
+                self.testset.df_classe.iloc[i].tolist(),
                 average='micro'
             )
 
@@ -179,7 +177,7 @@ class SolarMapModel():
         the pandas dataframe equivalent to compare with testset.df_classe.
         """
         df_classe_pred = pd.DataFrame(
-            index=pd.Index(self.testset.lst_ids),
+            index=pd.Index(self.testset.ids),
             columns=list(CLASSES.values()))
 
         for key in self.predicted_dict:
@@ -229,5 +227,3 @@ qmodel = SolarMapModel(cnn=net, transform=transform, limit_load=100)
 qmodel.train()
 qmodel.compute_prediction()
 # model = SolarMapModel(cnn=net, transform=transform)
-
-# model = SolarMapModel(cnn=net, mode='submit', transform=transform)

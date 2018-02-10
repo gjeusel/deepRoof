@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import re
-import os
 from pathlib import Path
 
 import random
@@ -15,14 +14,13 @@ import torchvision
 from torchvision import transforms
 import PIL
 
-
 import matplotlib.pyplot as plt
 
 SUBMISSION_DIR = Path(__file__).parent / "submission/"
 DATA_DIR = Path(__file__).parent / "data/"
 IMAGE_DIR = DATA_DIR / "images/"
 
-DF_TRAIN = pd.read_csv(DATA_DIR / 'train.csv', index_col='id')
+DF_REFS = pd.read_csv(DATA_DIR / 'train.csv', index_col='id')
 
 ROOF_NORTH_SOUTH = 1
 ROOF_WEST_EAST = 2
@@ -46,98 +44,88 @@ def get_images_ids():
     return image_ids
 
 
-IDS = pd.Index(get_images_ids())
+ALL_IDS = pd.Index(get_images_ids())
 
-IDS_TRAIN = DF_TRAIN.index
-IDS_SUBMIT = IDS.difference(IDS_TRAIN)
+IDS_LABELED = DF_REFS.index
+IDS_SUBMIT = ALL_IDS.difference(IDS_LABELED)
 
 # WIDTH, HEIGHT = 96, 96
 WIDTH, HEIGHT = 32, 32
 
 
+def guess_mode(ids):
+    """Guess the purpose of instanciated class based on ids given"""
+    if pd.Index(ids).isin(IDS_LABELED).all():
+        mode = 'train-test'
+    elif pd.Index(ids).isin(IDS_SUBMIT).all():
+        mode = 'submit'
+    else:
+        assert False
+    return mode
+
+
+def load_raw_images(ids):
+    """Load datas for list of ids."""
+    images = {}
+    images_asarray = []
+
+    counter = 0
+    for i in ids:
+        f = '{id}.jpg'.format(id=i)
+        fname = (IMAGE_DIR / f).as_posix()
+        im = PIL.Image.open(fname)
+        im.load()
+
+        images[i] = im
+
+        im = im.resize((WIDTH, HEIGHT), resample=PIL.Image.ANTIALIAS)
+        images_asarray.append(np.asarray(im))
+
+        if (counter != 0) and ((counter % 1000) == 0):
+            print("{}th image loaded.".format(counter))
+        counter += 1
+
+    images_asarray = np.concatenate(images_asarray)
+    images_asarray = images_asarray.reshape((len(ids), WIDTH, HEIGHT, 3))
+    return images, images_asarray
+
+
 class SolarMapDatas(torch.utils.data.Dataset):
     """Base class to handle datas for SolarMap Challenge."""
-
-    base_folder = 'images'
     # cf torchvision/torchvision/datasets/cifar.py for example
 
-    def __init__(self, root='./data',
-                 lst_ids=IDS_TRAIN,
+    ids = None
+    mode = 'train-test'
+    transform = None
+    df_classe = None
+
+    def __init__(self,
+                 ids=IDS_LABELED,
                  limit_load=None,
                  transform=None,
-                 download=False,
-                 verbose=True):
+                 ):
 
-        self.root = os.path.expanduser(root)
         self.transform = transform
 
-        self.size = len(lst_ids) if limit_load is None else limit_load
-        self.lst_ids = lst_ids[:self.size]
+        ids = pd.Index(ids).sort_values()
+        size = len(ids) if limit_load is None else limit_load
+        self.ids = ids[:size]
 
-        self.mode = self.guess_mode(lst_ids)
-        self.verbose = verbose
+        self.mode = guess_mode(ids)
 
-        if download:
-            # TODO
-            pass
+        self.images, self.np_data = load_raw_images(self.ids)
 
         if self.mode == 'train-test':
-            self.images, self.np_data, self.labels = \
-                self.load_raw_images(self.lst_ids)
-        elif self.mode == 'submit':
-            self.images, self.np_data, _ = \
-                self.load_raw_images(self.lst_ids)
+            self.labels = []
+            self.df_classe = pd.DataFrame(
+                0., index=self.ids, columns=list(CLASSES.values()))
+            for i in self.ids:
+                # Simple label
+                orientation = DF_REFS.loc[i]['orientation']
+                self.labels.append(orientation)
 
-        # Construct df classes reference
-        if self.mode == 'train-test':
-            df_classes = pd.DataFrame(
-                index=pd.Index(lst_ids),
-                columns=list(CLASSES.values()))
-            for i in range(self.size):
-                n_classe = self.labels[i]
-                idx_image = self.lst_ids[i]
-                df_classes.loc[idx_image][CLASSES[n_classe]] = 1.
-            self.df_classe = df_classes.fillna(0.)
-
-    def guess_mode(self, lst_ids):
-        """Guess the purpose of instanciated class based on lst_ids given"""
-        if pd.Index(lst_ids).isin(IDS_TRAIN).all():
-            mode = 'train-test'
-        elif pd.Index(lst_ids).isin(IDS_SUBMIT).all():
-            mode = 'submit'
-        else:
-            assert False
-
-        return mode
-
-    def load_raw_images(self, lst_ids):
-        """Load datas for lst_ids."""
-        images = {}
-        images_asarray = []
-        labels = []
-
-        counter = 0
-        for i in lst_ids:
-            f = '{id}.jpg'.format(id=i)
-            fname = os.path.join(self.root, self.base_folder, f)
-            im = PIL.Image.open(fname)
-            im.load()
-
-            images[i] = im
-
-            im = im.resize((WIDTH, HEIGHT), resample=PIL.Image.ANTIALIAS)
-            images_asarray.append(np.asarray(im))
-
-            if self.mode == 'train-test':
-                labels.append(int(DF_TRAIN.loc[i]))
-
-            if self.verbose and (counter != 0) and ((counter % 1000) == 0):
-                print("{}th image loaded.".format(counter))
-            counter += 1
-
-        images_asarray = np.concatenate(images_asarray)
-        images_asarray = images_asarray.reshape((len(lst_ids), WIDTH, HEIGHT, 3))
-        return images, images_asarray, labels
+                # Cosmetic Dataframe:
+                self.df_classe.loc[i][CLASSES[orientation]] = 1.
 
     def __getitem__(self, index):
         """
@@ -145,10 +133,10 @@ class SolarMapDatas(torch.utils.data.Dataset):
             index (int): Index
 
         Returns:
-            tuple: (image, target) where target is index of the target class.
+            tuple: (image, label) where label is index of the label class.
         """
         if self.mode == 'train-test':
-            img, target = self.np_data[index], self.labels[index]
+            img, label = self.np_data[index], self.labels[index]
         else:
             img = self.np_data[index]
 
@@ -163,7 +151,7 @@ class SolarMapDatas(torch.utils.data.Dataset):
             img = transf(img)
 
         if self.mode == 'train-test':
-            return img, target
+            return img, label
         else:
             return img
 
@@ -174,21 +162,15 @@ class SolarMapDatas(torch.utils.data.Dataset):
         # TODO
         pass
 
-    def download(self):
-        # TODO
-        pass
-
     def __repr__(self):
         fmt_str = 'Dataset ' + self.__class__.__name__ + '\n'
         fmt_str += '    Number of datapoints: {}\n'.format(self.__len__())
         fmt_str += '    Split: {}\n'.format(self.mode)
-        fmt_str += '    Root Location: {}\n'.format(self.root)
+        fmt_str += '    Image directory: {}\n'.format(IMAGE_DIR)
         tmp = '    Transforms (if any): '
         fmt_str += '{0}{1}\n'.format(
             tmp, self.transform.__repr__().replace('\n', '\n' + ' ' * len(tmp)))
         tmp = '    Target Transforms (if any): '
-        fmt_str += '{0}{1}'.format(
-            tmp, self.target_transform.__repr__().replace('\n', '\n' + ' ' * len(tmp)))
         return fmt_str
 
 
