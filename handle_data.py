@@ -50,7 +50,8 @@ IDS_LABELED = DF_REFS.index
 IDS_SUBMIT = ALL_IDS.difference(IDS_LABELED)
 
 # WIDTH, HEIGHT = 96, 96
-WIDTH, HEIGHT = 32, 32
+WIDTH, HEIGHT = 64, 64
+# WIDTH, HEIGHT = 32, 32
 
 
 def guess_mode(ids):
