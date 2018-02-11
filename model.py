@@ -3,29 +3,28 @@
 
 import logging
 import random
-import numpy as np
 import pandas as pd
 from datetime import datetime
+from collections import OrderedDict
 
-from handle_data import (SolarMapDatas,
-                         IDS_LABELED, IDS_SUBMIT, ALL_IDS, CLASSES,
-                         SUBMISSION_DIR,
-                         )
+from common import (IDS_LABELED, IDS_SUBMIT,
+                    CLASSES,
+                    SUBMISSION_DIR, TRAINED_DIR,
+                    )
+from handle_data import SolarMapDatas
+from historic_models import HistoricModel
 
 from torchvision import transforms
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.autograd import Variable
-
 import torch.optim as optim
+from torch.autograd import Variable
 
 from sklearn.metrics import average_precision_score
 
 # from keras.applications import VGG16
 # from keras.optimizers import SGD
-
-# Let's get inspired from http://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html
 
 
 def get_conv_output(shape, layer):
@@ -202,18 +201,38 @@ class SolarMapModel():
 
         self.CNN_type = CNN_type
 
+        self.model_db = HistoricModel()
+
     def train(self, **hyper_param):
+        """Train the Neural Network with hyper_param.
+        If an already existing Neural Network equivalent, just continue the training
+        where it stopped.
+        """
+
+        is_model_trained = not self.model_db.inspect_models(
+            self.CNN_type, hyper_param, self.width, self.height) is None
+
+        id_model = self.model_db.get_id_model(
+            self.CNN_type, hyper_param, self.width, self.height)
+
         self.cnn = self.CNN_type(input_shape=(3, self.width, self.height))
+
+        if is_model_trained:
+            net_state, optimizer, from_epoch = self.model_db.get_existing_cnn(id_model)
+            self.cnn.load_state_dict(net_state)
+        else:
+            from_epoch = 0
+            optimizer_func = hyper_param.get('optimizer', optim.SGD)
+            optimizer = optimizer_func(self.cnn.parameters(),
+                                    lr=hyper_param.get('learning_rate', 0.001),
+                                    )
+
         num_epochs = hyper_param.get('num_epochs', 5)
         criterion = hyper_param.get('criterion', nn.CrossEntropyLoss())
-        optimizer_func = hyper_param.get('optimizer', optim.SGD)
-        optimizer = optimizer_func(self.cnn.parameters(),
-                                   lr=hyper_param.get('learning_rate', 0.001),
-                                   # momentum=hyper_param.get('momentum', 0.9),
-                                   )
 
         logging.info('Beginning Training ...')
-        for epoch in range(num_epochs):  # loop over the dataset multiple times
+        # loop over the dataset multiple times
+        for epoch in range(from_epoch, num_epochs):
             logging.info('Starting training for epoch={}'.format(epoch))
 
             running_loss = 0.0
@@ -239,10 +258,16 @@ class SolarMapModel():
 
                 # log statistics
                 running_loss += loss.data[0]
-                if i % 20 == 19:    # print every 200 mini-batches
+                if i % 20 == 19:    # print every 20 mini-batches
                     logging.info('[{epoch}, {i}] loss: {loss}'.format(
-                        epoch=epoch, i=i, loss=round(running_loss, 1)))
+                        epoch=epoch, i=i + 1, loss=round(running_loss, 1)))
                     running_loss = 0.0
+
+            if epoch % 2 == 0:  # save every 2 epoch
+                self.model_db.save_model(id_model,
+                                         self.cnn, self.CNN_type, optimizer,
+                                         hyper_param, self.width, self.height,
+                                         epoch+1)
 
         logging.info('Finished Training')
 
