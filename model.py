@@ -54,7 +54,6 @@ class SolarMapModel():
     """Wrapper data & CNN."""
 
     def __init__(self, trainset, testset,
-                 CNN_type=ShortNet,
                  batch_size=4,
                  num_workers=4,
                  ):
@@ -80,23 +79,21 @@ class SolarMapModel():
             num_workers=num_workers,
         )
 
-        self.CNN_type = CNN_type
-
         self.model_db = HistoricModel()
 
-    def train(self, **hyper_param):
+    def train(self, CNN_type, **hyper_param):
         """Train the Neural Network with hyper_param.
         If an already existing Neural Network equivalent, just continue the training
         where it stopped.
         """
 
+        self.cnn = CNN_type(input_shape=(3, self.width, self.height))
+
         is_model_trained = not self.model_db.inspect_models(
-            self.CNN_type, hyper_param, self.width, self.height) is None
+            str(self.cnn), hyper_param, self.width, self.height) is None
 
         id_model = self.model_db.get_id_model(
-            self.CNN_type, hyper_param, self.width, self.height)
-
-        self.cnn = self.CNN_type(input_shape=(3, self.width, self.height))
+            str(self.cnn), hyper_param, self.width, self.height)
 
         if is_model_trained:
             net_state, optimizer, from_epoch = self.model_db.get_existing_cnn(
@@ -147,12 +144,16 @@ class SolarMapModel():
                     running_loss = 0.0
 
             if epoch % 2 == 0:  # save every 2 epoch
-                self.model_db.save_model(id_model,
-                                         self.cnn, self.CNN_type, optimizer,
-                                         hyper_param, self.width, self.height,
-                                         epoch + 1)
+                train_progress = 100 - (num_epochs - (epoch+1))/num_epochs*100
+                self.model_db.save_model(
+                    id_model,
+                    self.cnn, optimizer, epoch+1,
+                    hyper_param, self.width, self.height,
+                    int(train_progress),
+                )
 
         logging.info('Finished Training')
+        return id_model
 
     def compute_prediction(self):
         print('Beginning Predicting ...')
@@ -239,37 +240,9 @@ class SolarMapModel():
         f_cnn.write(str(self.cnn))
         df_scores.to_csv(path_res)
 
-    def process(self, **hyper_param):
-        self.train(**hyper_param)
+    def process(self, CNN_type, **hyper_param):
+        id_model = self.train(CNN_type, **hyper_param)
         self.compute_prediction()
         if self.mode == 'train-test':
             self.compute_scores()
-
-
-if __name__ == '__main__':
-    # Parameters for pre-processing:
-    preproc_param = dict(
-        width=96,
-        height=96,
-        transform=transforms.Compose(
-            [transforms.ToTensor(),
-             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
-             ]),
-        limit_load=None,
-    )
-    trainset, testset = generate_train_test_sets(
-        mode='train-test', **preproc_param)
-    model = SolarMapModel(
-        trainset, testset,
-        batch_size=100,
-        num_workers=4,
-    )
-
-    # Hyper Parameters for the CNN model
-    hyper_param = dict(
-        num_epochs=5,
-        learning_rate=0.001,
-        criterion=nn.CrossEntropyLoss(),
-        optimizer=optim.Adam,
-    )
-    model.process(**hyper_param)
+            self.model_db.add_score(id_model, self.accuracy, self.score)
