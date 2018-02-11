@@ -174,7 +174,7 @@ class SolarMapModel():
     """Wrapper data & CNN."""
 
     def __init__(self, trainset, testset,
-                 CNN=ShortNet,
+                 CNN_type=ShortNet,
                  batch_size=4,
                  num_workers=4,
                  ):
@@ -200,9 +200,10 @@ class SolarMapModel():
             num_workers=num_workers,
         )
 
-        self.cnn = CNN(input_shape=(3, self.width, self.height))
+        self.CNN_type = CNN_type
 
     def train(self, **hyper_param):
+        self.cnn = self.CNN_type(input_shape=(3, self.width, self.height))
         num_epochs = hyper_param.get('num_epochs', 5)
         criterion = hyper_param.get('criterion', nn.CrossEntropyLoss())
         optimizer_func = hyper_param.get('optimizer', optim.SGD)
