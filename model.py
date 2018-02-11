@@ -11,7 +11,9 @@ from common import (IDS_LABELED, IDS_SUBMIT,
                     CLASSES,
                     SUBMISSION_DIR, TRAINED_DIR,
                     )
+
 from handle_data import SolarMapDatas
+from networks import LargeNet, ShortNet
 from historic_models import HistoricModel
 
 from torchvision import transforms
@@ -25,127 +27,6 @@ from sklearn.metrics import average_precision_score
 
 # from keras.applications import VGG16
 # from keras.optimizers import SGD
-
-
-def get_conv_output(shape, layer):
-    bs = 1
-    x = Variable(torch.rand(bs, *shape))
-    out = layer(x)
-    return out.size()[1:]
-
-
-class LargeNet(nn.Module):
-    """Convolutional Neural Network deep layers."""
-
-    def __init__(self, input_shape):
-        """
-        :param tuple input_shape: shape of inputs tensor.
-            example: (3, 96, 96) with 3 for RGB.
-        """
-        super(LargeNet, self).__init__()
-
-        self.layer1 = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=3),
-            nn.ReLU(),
-            nn.Conv2d(64, 110, kernel_size=3),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2))
-
-        self.layer2 = nn.Sequential(
-            nn.Conv2d(110, 84, kernel_size=3),
-            nn.ReLU(),
-            # nn.BatchNorm2d(32),
-            nn.Conv2d(84, 84, kernel_size=3),
-            nn.ReLU(),
-            nn.MaxPool2d(2))
-
-        self.layer3 = nn.Sequential(
-            nn.Conv2d(84, 64, kernel_size=3),
-            nn.ReLU(),
-            nn.Conv2d(64, 64, kernel_size=3),
-            nn.ReLU(),
-            nn.MaxPool2d(2))
-
-        self.layer4 = nn.Sequential(
-            nn.Conv2d(64, 32, kernel_size=3),
-            nn.ReLU(),
-            nn.Conv2d(32, 32, kernel_size=3),
-            nn.ReLU(),
-            nn.MaxPool2d(2))
-
-        shape = get_conv_output(input_shape, self.layer1)
-        shape = get_conv_output(shape, self.layer2)
-        shape = get_conv_output(shape, self.layer3)
-        shape = get_conv_output(shape, self.layer4)
-
-        self.fc1 = nn.Linear(shape[0] * shape[1] *
-                             shape[2], 120)  # fully connected
-        self.fc2 = nn.Linear(120, 84)  # fully connected
-        self.fc3 = nn.Linear(84, 4)  # fully connected
-
-    def forward(self, x, training=True):
-        out = self.layer1(x)
-        out = nn.functional.dropout2d(out, 0.15)
-        out = self.layer2(out)
-        out = nn.functional.dropout2d(out, 0.20)
-
-        out = self.layer3(out)
-        out = nn.functional.dropout2d(out, 0.20)
-
-        out = self.layer4(out)
-        out = nn.functional.dropout2d(out, 0.20)
-
-        out = out.view(out.size(0), -1)
-        out = self.fc1(out)
-        out = self.fc2(out)
-        out = self.fc3(out)
-        return out
-
-
-class ShortNet(nn.Module):
-    """Convolutional Neural Network short layers."""
-
-    def __init__(self, input_shape):
-        """
-        :param tuple input_shape: shape of inputs tensor.
-            example: (3, 96, 96) with 3 for RGB.
-        """
-        super(ShortNet, self).__init__()
-
-        self.layer1 = nn.Sequential(
-            nn.Conv2d(3, 64, kernel_size=3),
-            nn.ReLU(),
-            nn.Conv2d(64, 32, kernel_size=3),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2))
-
-        self.layer2 = nn.Sequential(
-            nn.Conv2d(32, 32, kernel_size=3),
-            nn.ReLU(),
-            # nn.BatchNorm2d(32),
-            nn.Conv2d(32, 16, kernel_size=3),
-            nn.ReLU(),
-            nn.MaxPool2d(2))
-
-        shape = get_conv_output(input_shape, self.layer1)
-        shape = get_conv_output(shape, self.layer2)
-
-        self.fc1 = nn.Linear(shape[0] * shape[1] *
-                             shape[2], 120)  # fully connected
-        self.fc2 = nn.Linear(120, 84)  # fully connected
-        self.fc3 = nn.Linear(84, 4)  # fully connected
-
-    def forward(self, x, training=True):
-        out = self.layer1(x)
-        out = nn.functional.dropout2d(out, 0.15)
-        out = self.layer2(out)
-        out = nn.functional.dropout2d(out, 0.20)
-
-        out = out.view(out.size(0), -1)
-        out = self.fc1(out)
-        out = self.fc2(out)
-        out = self.fc3(out)
-        return out
 
 
 def generate_train_test_sets(mode, perc=0.7, **kwargs):
@@ -218,14 +99,16 @@ class SolarMapModel():
         self.cnn = self.CNN_type(input_shape=(3, self.width, self.height))
 
         if is_model_trained:
-            net_state, optimizer, from_epoch = self.model_db.get_existing_cnn(id_model)
+            net_state, optimizer, from_epoch = self.model_db.get_existing_cnn(
+                id_model)
             self.cnn.load_state_dict(net_state)
         else:
             from_epoch = 0
             optimizer_func = hyper_param.get('optimizer', optim.SGD)
             optimizer = optimizer_func(self.cnn.parameters(),
-                                    lr=hyper_param.get('learning_rate', 0.001),
-                                    )
+                                       lr=hyper_param.get(
+                                           'learning_rate', 0.001),
+                                       )
 
         num_epochs = hyper_param.get('num_epochs', 5)
         criterion = hyper_param.get('criterion', nn.CrossEntropyLoss())
@@ -267,7 +150,7 @@ class SolarMapModel():
                 self.model_db.save_model(id_model,
                                          self.cnn, self.CNN_type, optimizer,
                                          hyper_param, self.width, self.height,
-                                         epoch+1)
+                                         epoch + 1)
 
         logging.info('Finished Training')
 
@@ -363,30 +246,30 @@ class SolarMapModel():
             self.compute_scores()
 
 
-# if __name__ == '__main__':
-#     # Parameters for pre-processing:
-#     preproc_param = dict(
-#         width=96,
-#         height=96,
-#         transform=transforms.Compose(
-#             [transforms.ToTensor(),
-#              transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
-#              ]),
-#         limit_load=None,
-#     )
-#     trainset, testset = generate_train_test_sets(
-#         mode='train-test', **preproc_param)
-#     model = SolarMapModel(
-#         trainset, testset,
-#         batch_size=100,
-#         num_workers=4,
-#     )
+if __name__ == '__main__':
+    # Parameters for pre-processing:
+    preproc_param = dict(
+        width=96,
+        height=96,
+        transform=transforms.Compose(
+            [transforms.ToTensor(),
+             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+             ]),
+        limit_load=None,
+    )
+    trainset, testset = generate_train_test_sets(
+        mode='train-test', **preproc_param)
+    model = SolarMapModel(
+        trainset, testset,
+        batch_size=100,
+        num_workers=4,
+    )
 
-#     # Hyper Parameters for the CNN model
-#     hyper_param = dict(
-#         num_epochs=5,
-#         learning_rate=0.001,
-#         criterion=nn.CrossEntropyLoss(),
-#         optimizer=optim.Adam,
-#     )
-#     model.process(**hyper_param)
+    # Hyper Parameters for the CNN model
+    hyper_param = dict(
+        num_epochs=5,
+        learning_rate=0.001,
+        criterion=nn.CrossEntropyLoss(),
+        optimizer=optim.Adam,
+    )
+    model.process(**hyper_param)
