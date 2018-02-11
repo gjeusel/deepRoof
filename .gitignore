@@ -8,3 +8,7 @@ data/.ipynb_checkpoints/*
 notebooks/.ipynb_checkpoints/*
 
 submission/*
+trained_models/*
+data/cifar*
+keras_example.py
+pytorch_example.py
