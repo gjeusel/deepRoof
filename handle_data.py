@@ -49,10 +49,6 @@ ALL_IDS = pd.Index(get_images_ids())
 IDS_LABELED = DF_REFS.index
 IDS_SUBMIT = ALL_IDS.difference(IDS_LABELED)
 
-# WIDTH, HEIGHT = 96, 96
-WIDTH, HEIGHT = 64, 64
-# WIDTH, HEIGHT = 32, 32
-
 
 def guess_mode(ids):
     """Guess the purpose of instanciated class based on ids given"""
@@ -65,8 +61,8 @@ def guess_mode(ids):
     return mode
 
 
-def load_raw_images(ids):
-    """Load datas for list of ids."""
+def load_raw_images(ids, width, height):
+    """load datas for list of ids."""
     images = {}
     images_asarray = []
 
@@ -79,7 +75,7 @@ def load_raw_images(ids):
 
         images[i] = im
 
-        im = im.resize((WIDTH, HEIGHT), resample=PIL.Image.ANTIALIAS)
+        im = im.resize((width, height), resample=PIL.Image.ANTIALIAS)
         images_asarray.append(np.asarray(im))
 
         if (counter != 0) and ((counter % 1000) == 0):
@@ -87,7 +83,7 @@ def load_raw_images(ids):
         counter += 1
 
     images_asarray = np.concatenate(images_asarray)
-    images_asarray = images_asarray.reshape((len(ids), WIDTH, HEIGHT, 3))
+    images_asarray = images_asarray.reshape((len(ids), width, height, 3))
     return images, images_asarray
 
 
@@ -100,10 +96,10 @@ class SolarMapDatas(torch.utils.data.Dataset):
     transform = None
     df_classe = None
 
-    def __init__(self,
+    def __init__(self, width=96, height=96,
                  ids=IDS_LABELED,
-                 limit_load=None,
                  transform=None,
+                 limit_load=None,
                  ):
 
         self.transform = transform
@@ -114,7 +110,9 @@ class SolarMapDatas(torch.utils.data.Dataset):
 
         self.mode = guess_mode(ids)
 
-        self.images, self.np_data = load_raw_images(self.ids)
+        self.width = width
+        self.height = height
+        self.images, self.np_data = load_raw_images(self.ids, width, height)
 
         if self.mode == 'train-test':
             self.labels = []
@@ -166,12 +164,12 @@ class SolarMapDatas(torch.utils.data.Dataset):
     def __repr__(self):
         fmt_str = 'Dataset ' + self.__class__.__name__ + '\n'
         fmt_str += '    Number of datapoints: {}\n'.format(self.__len__())
+        fmt_str += '    Width, Height: {},{}\n'.format(self.width, self.height)
         fmt_str += '    Split: {}\n'.format(self.mode)
         fmt_str += '    Image directory: {}\n'.format(IMAGE_DIR)
         tmp = '    Transforms (if any): '
         fmt_str += '{0}{1}\n'.format(
             tmp, self.transform.__repr__().replace('\n', '\n' + ' ' * len(tmp)))
-        tmp = '    Target Transforms (if any): '
         return fmt_str
 
 
