@@ -28,8 +28,10 @@ from sklearn.metrics import average_precision_score
 # from keras.applications import VGG16
 # from keras.optimizers import SGD
 
+DBMod = HistoricModel()
 
-def generate_train_test_sets(mode, perc=0.7, **kwargs):
+
+def generate_train_test_sets(mode, transform_train, transform_test, perc=0.7, **kwargs):
     if mode == 'train-test':
         percentage_train = perc
         ids_train = random.sample(
@@ -45,8 +47,8 @@ def generate_train_test_sets(mode, perc=0.7, **kwargs):
     else:
         assert False
 
-    trainset = SolarMapDatas(ids=ids_train, **kwargs)
-    testset = SolarMapDatas(ids=ids_test, **kwargs)
+    trainset = SolarMapDatas(ids=ids_train, transform=transform_train, **kwargs)
+    testset = SolarMapDatas(ids=ids_test, transform=transform_test, **kwargs)
     return trainset, testset
 
 
@@ -61,9 +63,13 @@ class SolarMapModel():
         self.trainset = trainset
         self.testset = testset
 
+        assert self.trainset.width == self.testset.width
+        assert self.trainset.height == self.testset.height
+        self.width = self.trainset.width
+        self.height = self.trainset.height
+
+        assert self.trainset.mode == self.testset.mode
         self.mode = self.testset.mode
-        self.width = self.testset.width
-        self.height = self.testset.height
 
         self.trainloader = torch.utils.data.DataLoader(
             self.trainset,
@@ -79,8 +85,6 @@ class SolarMapModel():
             num_workers=num_workers,
         )
 
-        self.model_db = HistoricModel()
-
     def train(self, CNN_type, **hyper_param):
         """Train the Neural Network with hyper_param.
         If an already existing Neural Network equivalent, just continue the training
@@ -89,23 +93,26 @@ class SolarMapModel():
 
         self.cnn = CNN_type(input_shape=(3, self.width, self.height))
 
-        is_model_trained = not self.model_db.inspect_models(
-            str(self.cnn), hyper_param, self.width, self.height) is None
+        is_model_trained = not DBMod.inspect_models(
+            str(self.cnn), hyper_param,
+            self.trainset.transform, self.testset.transform) is None
 
-        id_model = self.model_db.get_id_model(
-            str(self.cnn), hyper_param, self.width, self.height)
+        id_model = DBMod.get_id_model(
+            str(self.cnn), hyper_param,
+            self.trainset.transform,
+            self.testset.transform)
 
         if is_model_trained:
-            net_state, optimizer, from_epoch = self.model_db.get_existing_cnn(
+            net_state, optimizer, from_epoch = DBMod.get_existing_cnn(
                 id_model)
             self.cnn.load_state_dict(net_state)
         else:
+            optimizer_func = hyper_param.get('optimizer_func', optim.SGD)
+            optimizer = optimizer_func(
+                self.cnn.parameters(),
+                **(hyper_param.get('optimizer_args', None))
+            )
             from_epoch = 0
-            optimizer_func = hyper_param.get('optimizer', optim.SGD)
-            optimizer = optimizer_func(self.cnn.parameters(),
-                                       lr=hyper_param.get(
-                                           'learning_rate', 0.001),
-                                       )
 
         num_epochs = hyper_param.get('num_epochs', 5)
         criterion = hyper_param.get('criterion', nn.CrossEntropyLoss())
@@ -145,10 +152,11 @@ class SolarMapModel():
 
             if epoch % 2 == 0:  # save every 2 epoch
                 train_progress = 100 - (num_epochs - (epoch+1))/num_epochs*100
-                self.model_db.save_model(
+                DBMod.save_model(
                     id_model,
                     self.cnn, optimizer, epoch+1,
-                    hyper_param, self.width, self.height,
+                    hyper_param, self.trainset.transform, self.testset.transform,
+                    self.width, self.height,
                     int(train_progress),
                 )
 
@@ -245,4 +253,4 @@ class SolarMapModel():
         self.compute_prediction()
         if self.mode == 'train-test':
             self.compute_scores()
-            self.model_db.add_score(id_model, self.accuracy, self.score)
+            DBMod.add_score(id_model, self.accuracy, self.score)

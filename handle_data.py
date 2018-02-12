@@ -1,4 +1,4 @@
-import random
+import logging
 import pandas as pd
 import numpy as np
 
@@ -26,30 +26,20 @@ def guess_mode(ids):
     return mode
 
 
-def load_raw_images(ids, width, height):
+def load_raw_images(ids):
     """load datas for list of ids."""
-    images = {}
-    images_asarray = []
-
+    images = []
     counter = 0
     for i in ids:
-        f = '{id}.jpg'.format(id=i)
-        fname = (IMAGE_DIR / f).as_posix()
-        im = PIL.Image.open(fname)
+        fname = '{id}.jpg'.format(id=i)
+        fpath = (IMAGE_DIR / fname).as_posix()
+        im = PIL.Image.open(fpath)
         im.load()
-
-        images[i] = im
-
-        im = im.resize((width, height), resample=PIL.Image.ANTIALIAS)
-        images_asarray.append(np.asarray(im))
-
+        images.append(im)
         if (counter != 0) and ((counter % 1000) == 0):
-            print("{}th image loaded.".format(counter))
+            logging.info("{}th image loaded.".format(counter))
         counter += 1
-
-    images_asarray = np.concatenate(images_asarray)
-    images_asarray = images_asarray.reshape((len(ids), width, height, 3))
-    return images, images_asarray
+    return images
 
 
 class SolarMapDatas(torch.utils.data.Dataset):
@@ -61,9 +51,14 @@ class SolarMapDatas(torch.utils.data.Dataset):
     transform = None
     df_classe = None
 
-    def __init__(self, width=96, height=96,
+    def __init__(self,
                  ids=IDS_LABELED,
-                 transform=None,
+                 transform=transforms.Compose(
+                     [transforms.Resize(size=(64, 64)),
+                      transforms.ToTensor(),
+                      transforms.Normalize(mean=(0.5, 0.5, 0.5),
+                                           std=(0.5, 0.5, 0.5)),
+                      ]),
                  limit_load=None,
                  ):
 
@@ -75,9 +70,8 @@ class SolarMapDatas(torch.utils.data.Dataset):
 
         self.mode = guess_mode(ids)
 
-        self.width = width
-        self.height = height
-        self.images, self.np_data = load_raw_images(self.ids, width, height)
+        self.images = load_raw_images(self.ids)
+        self.width, self.height = list(transform(self.images[0]).shape[1:])
 
         if self.mode == 'train-test':
             self.labels = []
@@ -99,28 +93,16 @@ class SolarMapDatas(torch.utils.data.Dataset):
         Returns:
             tuple: (image, label) where label is index of the label class.
         """
-        if self.mode == 'train-test':
-            img, label = self.np_data[index], self.labels[index]
-        else:
-            img = self.np_data[index]
-
-        # doing this so that it is consistent with all other datasets
-        # to return a PIL Image
-        img = PIL.Image.fromarray(img)
-
-        if self.transform is not None:
-            img = self.transform(img)
-        else:
-            transf = transforms.Compose([transforms.ToTensor()])
-            img = transf(img)
+        im = self.images[index]
+        im = self.transform(im)
 
         if self.mode == 'train-test':
-            return img, label
+            return im, self.labels[index]
         else:
-            return img
+            return im
 
     def __len__(self):
-        return len(self.np_data)
+        return len(self.images)
 
     def _check_integrity(self):
         # TODO
