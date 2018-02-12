@@ -34,6 +34,16 @@ def serialize_transform(transf):
                 'ratio': t.ratio,
                 'interpolation': t.interpolation,
             })
+        elif isinstance(t, transforms.CenterCrop):
+            t_json.append({
+                'type': 'RandomResizedCrop',
+                'size': t.size,
+                'padding': t.padding,
+            })
+        elif isinstance(t, transforms.RandomVerticalFlip):
+            t_json.appaned({'type': 'RandomVerticalFlip'})
+        elif isinstance(t, transforms.RandomHorizontalFlip):
+            t_json.appaned({'type': 'RandomHorizontalFlip'})
 
         else:
             logging.error('Implement serialization for {} plz !'
