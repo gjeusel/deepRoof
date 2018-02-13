@@ -38,12 +38,11 @@ def serialize_transform(transf):
             t_json.append({
                 'type': 'RandomResizedCrop',
                 'size': t.size,
-                'padding': t.padding,
             })
         elif isinstance(t, transforms.RandomVerticalFlip):
-            t_json.appaned({'type': 'RandomVerticalFlip'})
+            t_json.append({'type': 'RandomVerticalFlip'})
         elif isinstance(t, transforms.RandomHorizontalFlip):
-            t_json.appaned({'type': 'RandomHorizontalFlip'})
+            t_json.append({'type': 'RandomHorizontalFlip'})
 
         else:
             logging.error('Implement serialization for {} plz !'

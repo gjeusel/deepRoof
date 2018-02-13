@@ -24,41 +24,53 @@ def explore_preproc_params_ShortNet():
         optimizer_args={'lr': 0.001},
     )
 
-    for s in range(64, 96, 8):
+    for s in range(40, 64, 6):
         resize = transforms.Resize((s, s))
         ratiocrop = int(224 / 225 * s)
 
-        logging.info('\n-------------------------------------\n'
-                     'width = {}  ------   height = {}\n' .format(s, s))
+        for m in range(2, 8):
+            mean = [m * 0.1] * 3
 
-        for horiz in [transforms.RandomVerticalFlip(),
-                      transforms.RandomHorizontalFlip()]:
-            preproc_param = dict(
-                transform_train=transforms.Compose(
-                    [resize,
-                     transforms.RandomResizedCrop(size=ratiocrop),
-                     horiz,
-                     transforms.ToTensor(),
-                     normalize,
-                     ]),
-                transform_test=transforms.Compose(
-                    [resize,
-                     transforms.CenterCrop(size=ratiocrop),
-                     transforms.ToTensor(),
-                     normalize,
-                     ]),
-            )
+            for st in range(2, 8):
+                std = [st * 0.1] * 3
 
-            trainset, testset = generate_train_test_sets(
-                mode='train-test', **preproc_param)
+                normalize.mean = mean
+                normalize.std = std
 
-            model = SolarMapModel(
-                trainset, testset,
-                batch_size=4,
-                num_workers=4,
-            )
+                logging.info('\n-------------------------------------\n'
+                             'width = {}  ------   height = {}\n'
+                             'mean = {}\n'
+                             'std = {}'
+                             .format(s, s, mean, std))
 
-            model.process(CNN_type=ShortNet, **hyper_param)
+                for horiz in [transforms.RandomVerticalFlip(),
+                              transforms.RandomHorizontalFlip()]:
+                    preproc_param = dict(
+                        transform_train=transforms.Compose(
+                            [resize,
+                             transforms.RandomResizedCrop(size=ratiocrop),
+                             horiz,
+                             transforms.ToTensor(),
+                             normalize,
+                             ]),
+                        transform_test=transforms.Compose(
+                            [resize,
+                             transforms.CenterCrop(size=ratiocrop),
+                             transforms.ToTensor(),
+                             normalize,
+                             ]),
+                    )
+
+                    trainset, testset = generate_train_test_sets(
+                        mode='train-test', **preproc_param)
+
+                    model = SolarMapModel(
+                        trainset, testset,
+                        batch_size=4,
+                        num_workers=4,
+                    )
+
+                    model.process(CNN_type=ShortNet, **hyper_param)
 
 
 def explore_hyperparams_ShortNet():
