@@ -8,6 +8,6 @@ data/.ipynb_checkpoints/*
 notebooks/.ipynb_checkpoints/*
 
 submission/*
-trained_models/*
+trained_models/model_*
 data/cifar*
 examples/

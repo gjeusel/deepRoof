@@ -3,7 +3,6 @@ import pandas as pd
 from common import TRAINED_DIR
 from handle_data import SolarMapDatas
 from model import SolarMapModel, LargeNet, ShortNet, generate_train_test_sets
-from historic_models import serialize_transform
 
 from torchvision import transforms
 import torch.nn as nn
@@ -74,23 +73,28 @@ def explore_preproc_params_ShortNet():
 
 
 def explore_hyperparams_ShortNet():
-    preproc_param = dict(
-        transform_train=transforms.Compose(
-            [transforms.Resize(size=(96, 96)),
-                transforms.RandomResizedCrop(size=88),
-                transforms.RandomHorizontalFlip(),
-                transforms.ToTensor(),
-                transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                     std=[0.229, 0.224, 0.225]),
-             ]),
-        transform_test=transforms.Compose(
-            [transforms.Resize(size=(96, 96)),
-             transforms.CenterCrop(size=(88, 88)),
-             transforms.ToTensor(),
-             transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                  std=[0.229, 0.224, 0.225]),
-             ]),
-    )
+    normalize = transforms.Normalize(mean=[0.3, 0.3, 0.3],
+                                    std=[0.2, 0.2, 0.2])
+
+    transform_train = transforms.Compose([
+        transforms.Resize((46, 46)),
+        transforms.RandomResizedCrop(45),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        normalize,
+    ])
+
+    transform_test = transforms.Compose([
+        transforms.Resize((46, 46)),
+        transforms.RandomResizedCrop(45),
+        transforms.ToTensor(),
+        normalize,
+    ])
+
+    preproc_param = {
+        'transform_train': transform_train,
+        'transform_test': transform_test,
+    }
 
     trainset, testset = generate_train_test_sets(
         mode='train-test', **preproc_param)
@@ -100,10 +104,21 @@ def explore_hyperparams_ShortNet():
         batch_size=4,
         num_workers=4,
     )
+
+    lst_lossfunc = [
+        nn.L1Loss(),
+        nn.MSELoss(),
+        nn.CrossEntropyLoss(),
+        nn.NLLLoss2d(),
+        nn.PoissonNLLLoss(),
+        nn.BCELoss(),
+    ]
+
     for i_learning_rate in range(1, 5):
         learning_rate = i_learning_rate * 0.001
         for criterion in [nn.CrossEntropyLoss(), nn.NLLLoss2d()]:
-            for optimizer in [optim.SGD, optim.RMSPro]:
+            # for optimizer in [optim.SGD, optim.RMSPro]:
+            for optimizer in [optim.Adam]:
                 logging.info(
                     '\n-------------------------------------\n'
                     'learning_rate: {learning_rate}\n'

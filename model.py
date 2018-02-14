@@ -126,14 +126,16 @@ class SolarMapModel():
             for i, data in enumerate(self.trainloader):
                 inputs, labels = data  # get the inputs
 
+                # criterion expect a class index from 0 to n_classes-1
+                labels = labels - 1
+
                 # wrap them in Variable
                 inputs, labels = Variable(inputs), Variable(labels)
 
                 optimizer.zero_grad()  # zero the parameter gradients
                 output = self.cnn(inputs)  # forward
 
-                # criterion expect a class index from 0 to n_classes-1
-                loss = criterion(output, labels - 1)
+                loss = criterion(output, labels)
 
                 # Make some space:
                 del output

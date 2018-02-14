@@ -1,0 +1,2541 @@
+id,CNN_repr,hyper_param,width,height,transform_train,transform_test,train_progress(%),accuracy,score
+0,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (2304 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",63,63,"[{'type': 'Resize', 'size': (64, 64), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (63, 63), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]","[{'type': 'Resize', 'size': (64, 64), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (63, 63)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]",100,0.5243820975283902,0.7197172122021793
+1,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (2304 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",63,63,"[{'type': 'Resize', 'size': (64, 64), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (63, 63), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]","[{'type': 'Resize', 'size': (64, 64), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (63, 63)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]",100,0.5250501002004008,0.7196893787575118
+2,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (3136 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",71,71,"[{'type': 'Resize', 'size': (72, 72), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (71, 71), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]","[{'type': 'Resize', 'size': (72, 72), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (71, 71)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]",100,0.4976619906479626,0.700846136717875
+3,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (3136 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",71,71,"[{'type': 'Resize', 'size': (72, 72), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (71, 71), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]","[{'type': 'Resize', 'size': (72, 72), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (71, 71)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]",100,0.509686038744155,0.7093075038966785
+4,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (4096 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",79,79,"[{'type': 'Resize', 'size': (80, 80), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (79, 79), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]","[{'type': 'Resize', 'size': (80, 80), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (79, 79)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]",100,0.5110220440881763,0.7057169895346205
+5,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (4096 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",79,79,"[{'type': 'Resize', 'size': (80, 80), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (79, 79), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]","[{'type': 'Resize', 'size': (80, 80), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (79, 79)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]",100,0.5400801603206413,0.7275662435983047
+6,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (5184 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",87,87,"[{'type': 'Resize', 'size': (88, 88), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (87, 87), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]","[{'type': 'Resize', 'size': (88, 88), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (87, 87)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]",100,0.5160320641282565,0.7133155199287421
+7,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (5184 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",87,87,"[{'type': 'Resize', 'size': (88, 88), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (87, 87), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]","[{'type': 'Resize', 'size': (88, 88), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (87, 87)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}]",100,0.4946559786239145,0.7006234691605381
+8,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.2, 0.2, 0.2]}]",100,0.518370073480294,0.7191605433088362
+9,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.2, 0.2, 0.2]}]",100,0.5875083500334002,0.7564573591627676
+10,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.23246492985971945,0.5280839456691118
+11,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5671342685370742,0.7458806501892652
+12,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.4, 0.4, 0.4]}]",100,0.4251837007348029,0.6484079269650349
+13,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.4, 0.4, 0.4]}]",100,0.6015364061456245,0.7601035404141595
+14,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.5, 0.5, 0.5]}]",100,0.4522378089512358,0.6724281897127526
+15,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.5, 0.5, 0.5]}]",100,0.5831663326653307,0.7586283678468031
+16,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.542752171008684,0.7273992429303018
+17,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5607882431529726,0.7383656201291452
+18,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.4352037408149633,0.6541694500111279
+19,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5978623914495658,0.7660042306835886
+20,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.2, 0.2, 0.2]}]",100,0.5604542418169672,0.7393954575818283
+21,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.2, 0.2, 0.2]}]",100,0.5323981295925184,0.7221943887775515
+22,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5350701402805611,0.7209418837675305
+23,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.572812291249165,0.7507793364506771
+24,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.4, 0.4, 0.4]}]",100,0.521376085504342,0.7147906924960994
+25,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.4, 0.4, 0.4]}]",100,0.5517702070808284,0.7400077933645046
+26,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.5, 0.5, 0.5]}]",100,0.5320641282565131,0.7266755733689582
+27,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.5, 0.5, 0.5]}]",100,0.5674682698730795,0.7460476508572681
+28,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5454241816967268,0.7292919171676663
+29,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5457581830327322,0.7301269205076795
+30,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5367401469605878,0.7290970830549961
+31,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5708082832331329,0.7480516588732998
+32,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.2, 0.2, 0.2]}]",100,0.5614562458249833,0.7427076374972137
+33,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.2, 0.2, 0.2]}]",100,0.5320641282565131,0.7236138944555743
+34,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5708082832331329,0.7482464929859698
+35,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5581162324649298,0.7388387886884854
+36,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.4, 0.4, 0.4]}]",100,0.5661322645290581,0.7464929859719419
+37,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.4, 0.4, 0.4]}]",100,0.5781563126252505,0.7537296815853916
+38,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.5, 0.5, 0.5]}]",100,0.5501002004008017,0.7350534402137576
+39,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.5, 0.5, 0.5]}]",100,0.5905143620574482,0.7580160320641269
+40,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5380761523046093,0.7311010910710282
+41,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5681362725450901,0.7481629926519693
+42,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5591182364729459,0.7407871298151832
+43,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5544422177688709,0.7410376308171873
+44,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.2, 0.2, 0.2]}]",100,0.5444221776887107,0.7309340904030255
+45,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.2, 0.2, 0.2]}]",100,0.5878423513694054,0.7596303718548192
+46,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5350701402805611,0.7259240703629449
+47,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5664662658650634,0.7435426408372274
+48,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.4, 0.4, 0.4]}]",100,0.5430861723446894,0.7224448897795557
+49,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.4, 0.4, 0.4]}]",100,0.5818303273213092,0.7554553551547522
+50,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.5, 0.5, 0.5]}]",100,0.551436205744823,0.7320752616343761
+51,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.5, 0.5, 0.5]}]",100,0.5100200400801603,0.7060231574259586
+52,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5657982631930528,0.7420674682698697
+53,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.6105544422177689,0.7698452460476491
+54,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5574482297929192,0.7384769539078129
+55,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5681362725450901,0.7493319973279874
+56,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.2, 0.2, 0.2]}]",100,0.5407481629926519,0.7311010910710279
+57,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.2, 0.2, 0.2]}]",100,0.5671342685370742,0.7455188154085926
+58,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5474281897127589,0.7319082609663746
+59,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5958583834335337,0.7598530394121565
+60,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.4, 0.4, 0.4]}]",100,0.5995323981295925,0.7647795591182354
+61,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.4, 0.4, 0.4]}]",100,0.5404141616566466,0.7252560676909342
+62,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.5, 0.5, 0.5]}]",100,0.5026720106880428,0.7081941661099941
+63,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.5, 0.5, 0.5]}]",100,0.5808283233132933,0.7530060120240464
+64,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5370741482965932,0.7296537519483383
+65,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5781563126252505,0.7490536628813153
+66,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5320641282565131,0.7250612335782642
+67,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5360721442885772,0.7256735693609404
+68,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.2, 0.2, 0.2]}]",100,0.5587842351369405,0.7357492763304359
+69,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.2, 0.2, 0.2]}]",100,0.5307281229124916,0.7196893787575118
+70,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5637942551770208,0.7412046314851904
+71,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5337341349365398,0.7252560676909343
+72,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.4, 0.4, 0.4]}]",100,0.5594522378089513,0.7390057893564878
+73,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.4, 0.4, 0.4]}]",100,0.5400801603206413,0.7276219104876389
+74,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.5, 0.5, 0.5]}]",100,0.5571142284569138,0.7359162769984385
+75,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.5, 0.5, 0.5]}]",100,0.572812291249165,0.7505288354486728
+76,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5678022712090849,0.7443219772879072
+77,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5627922511690047,0.7400356268091716
+78,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5574482297929192,0.7366677800044503
+79,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (576 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",39,39,"[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (40, 40), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (39, 39)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5738142952571811,0.7473836562012893
+80,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.2, 0.2, 0.2]}]",100,0.4799599198396794,0.6932476063237535
+81,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.2, 0.2, 0.2]}]",100,0.5240480961923848,0.720329547984855
+82,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5270541082164328,0.7188822088621646
+83,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5136940547762191,0.7102538410153595
+84,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.4, 0.4, 0.4]}]",100,0.4438877755511022,0.6637163215319459
+85,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.4, 0.4, 0.4]}]",100,0.5083500334001336,0.7111445112447075
+86,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.5, 0.5, 0.5]}]",100,0.4966599866399466,0.7007626363838737
+87,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.5, 0.5, 0.5]}]",100,0.4645958583834336,0.6728735248274273
+88,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.4926519706078824,0.692440436428408
+89,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5444221776887107,0.7295702516143374
+90,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.4859719438877755,0.6927744377644115
+91,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.2, 0.2, 0.2], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5490981963927856,0.7279280783789764
+92,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.2, 0.2, 0.2]}]",100,0.4993319973279893,0.7011801380538796
+93,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.2, 0.2, 0.2]}]",100,0.6449565798263193,0.7902193275439762
+94,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5507682030728123,0.7311845914050293
+95,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5327321309285237,0.7270652415942968
+96,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.4, 0.4, 0.4]}]",100,0.478623914495658,0.6940826096637671
+97,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.4, 0.4, 0.4]}]",100,0.552438209752839,0.7341906034290777
+98,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.5, 0.5, 0.5]}]",100,0.5200400801603207,0.7182698730794886
+99,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.5, 0.5, 0.5]}]",100,0.5657982631930528,0.7405087953685126
+100,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.4388777555110221,0.6685871743486907
+101,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.541750167000668,0.7318247606323729
+102,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.4248496993987976,0.6579547984858534
+103,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.6082164328657315,0.7725172567356928
+104,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.2, 0.2, 0.2]}]",100,0.5624582498329993,0.7439323090625675
+105,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.2, 0.2, 0.2]}]",100,0.5918503674014696,0.7599087063014901
+106,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5153640614562458,0.7118403473613855
+107,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5985303941215765,0.7636383878868832
+108,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.4, 0.4, 0.4]}]",100,0.5170340681362725,0.7089178356713386
+109,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.4, 0.4, 0.4]}]",100,0.5554442217768871,0.7384212870184785
+110,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.5, 0.5, 0.5]}]",100,0.49131596526386107,0.6966154531284743
+111,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.5, 0.5, 0.5]}]",100,0.5497661990647963,0.7327710977510548
+112,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5247160988643954,0.7210810509908678
+113,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5875083500334002,0.7597695390781539
+114,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5153640614562458,0.7165998663994619
+115,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.4, 0.4, 0.4], 'std': [0.7000000000000001, 0.7000000000000001, 0.7000000000000001]}]",100,0.5551102204408818,0.7325762636383842
+116,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.2, 0.2, 0.2]}]",100,0.5240480961923848,0.7185760409708256
+117,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.2, 0.2, 0.2]}]",100,0.5604542418169672,0.7422623023825402
+118,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5046760187040749,0.703072812291245
+119,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.30000000000000004, 0.30000000000000004, 0.30000000000000004]}]",100,0.5788243152972612,0.7547038521487398
+120,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.4, 0.4, 0.4]}]",100,0.5400801603206413,0.7279837452683116
+121,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.4, 0.4, 0.4]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.4, 0.4, 0.4]}]",100,0.5798263193052772,0.7545646849254046
+122,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.5, 0.5, 0.5]}]",100,0.4308617234468938,0.6508851035404074
+123,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.5, 0.5, 0.5]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.5, 0.5, 0.5]}]",100,0.5978623914495658,0.7666443999109315
+124,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomVerticalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",100,0.5387441549766199,0.7259519038076113
+125,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 5), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45)}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.5, 0.5, 0.5], 'std': [0.6000000000000001, 0.6000000000000001, 0.6000000000000001]}]",60,,
+126,"ShortNet (
+  (layer1): Sequential (
+    (0): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(64, 32, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (layer2): Sequential (
+    (0): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1))
+    (1): ReLU ()
+    (2): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1))
+    (3): ReLU ()
+    (4): MaxPool2d (size=(2, 2), stride=(2, 2), dilation=(1, 1))
+  )
+  (fc1): Linear (1024 -> 120)
+  (fc2): Linear (120 -> 84)
+  (fc3): Linear (84 -> 4)
+)","OrderedDict([('criterion', CrossEntropyLoss (
+)), ('num_epochs', 15), ('optimizer_args', {'lr': 0.001}), ('optimizer_func', <class 'torch.optim.adam.Adam'>)])",45,45,"[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'RandomHorizontalFlip'}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.3, 0.3, 0.3], 'std': [0.2, 0.2, 0.2]}]","[{'type': 'Resize', 'size': (46, 46), 'interpolation': 2}, {'type': 'RandomResizedCrop', 'size': (45, 45), 'scale': (0.08, 1.0), 'ratio': (0.75, 1.3333333333333333), 'interpolation': 2}, {'type': 'ToTensor'}, {'type': 'Normalize', 'mean': [0.3, 0.3, 0.3], 'std': [0.2, 0.2, 0.2]}]",100,0.33,0.5975000000000001
