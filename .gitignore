@@ -11,3 +11,6 @@ submission/*
 trained_models/model_*
 data/cifar*
 examples/
+pretrained/
+
+src/*.egg-info
