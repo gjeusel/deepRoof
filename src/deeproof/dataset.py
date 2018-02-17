@@ -3,9 +3,10 @@ import PIL
 import random
 from math import floor
 
+from sklearn.preprocessing import LabelBinarizer
 from torchvision import transforms
 from torch.utils.data.dataset import Dataset
-from torch import from_numpy
+from torch import from_numpy, np
 
 
 class RoofDataset(Dataset):
@@ -17,31 +18,39 @@ class RoofDataset(Dataset):
         optional: A torchvision transforms
     """
 
-    def __init__(self, csv_path, img_path, img_ext='jpg',
+    def __init__(self, csv_path, img_path, img_ext='.jpg',
                  transform=transforms.Compose(
                      [transforms.Resize(size=(64, 64)),
                       transforms.ToTensor(),
                       transforms.Normalize(mean=(0.5, 0.5, 0.5),
                                            std=(0.5, 0.5, 0.5))])):
 
-        self.df = pd.read_csv(csv_path, index_col=0)
-        self.df = self.df.sort_index()
-        self.df['orientation'] = self.df['orientation'] - \
-            1  # begin class id at 0
-        assert self.df.index.apply(
-            lambda x: (img_path / x + img_ext).exists()).all(), \
-            "Some images referenced in the CSV file were not found"
+        df = pd.read_csv(csv_path)
+        ids_missing_mask = []
+        for i, row in df.iterrows():
+            fpath = img_path / (str(row['id']) + img_ext)
+            ids_missing_mask.append(fpath.exists())
+        assert all(ids_missing_mask), \
+            "Some images referenced in the CSV file where not found: {}".format(
+                df['id'][[not i for i in ids_missing_mask]])
+
+        df = df.set_index('id').sort_index()
+        df['orientation'] = df['orientation'] - 1  # begin class id at 0
+        self.df = df
 
         self.img_path = img_path
         self.img_ext = img_ext
         self.transform = transform
 
         self.ids = self.df.index
-        self.labels = self.df['orientation']
+
+        self.lb = LabelBinarizer()
+        self.labels = self.lb.fit_transform(self.df['orientation']).astype(np.float32)
 
     def __getitem__(self, index):
         """Return data at index."""
-        img = PIL.Image.open(self.img_path / self.ids[index] + self.img_ext)
+        fname = self.img_path / (str(self.ids[index]) + self.img_ext)
+        img = PIL.Image.open(fname)
         if self.transform is not None:
             img = self.transform(img)
 

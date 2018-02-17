@@ -145,7 +145,7 @@ if __name__ == "__main__":
 
     # Augmentation + Normalization for full training
     ds_transform_augmented = transforms.Compose([
-        transforms.RandomSizedCrop(224),
+        transforms.RandomResizedCrop(224),
         # PowerPIL(),
         transforms.ToTensor(),
         # ColorJitter(), # Use PowerPIL instead, with PillowSIMD it's much more efficient
@@ -160,7 +160,7 @@ if __name__ == "__main__":
 
     # Normalization only for validation and test
     ds_transform_raw = transforms.Compose([
-        transforms.Scale(224),
+        transforms.Resize(224),
         transforms.ToTensor(),
         normalize
     ])
@@ -171,12 +171,8 @@ if __name__ == "__main__":
     model = ResNet50(4)
 
     # criterion = ConvolutedLoss()
-    criterion = torch.nn.MultiLabelSoftMarginLoss(
-        weight=torch.Tensor([1,  4,  2,  1,
-                             1,  3,  3,  3,
-                             4,  4,  1,  2,
-                             1,  1,  3,  4,  1])
-    )
+    weight = torch.Tensor([1., 1.971741, 3.972452, 1.824547])
+    criterion = torch.nn.MultiLabelSoftMarginLoss(weight=weight)
 
     # Note, p_training has lr_decay automated
     optimizer = optim.SGD(model.parameters(), lr=1e-2, momentum=0.9,
