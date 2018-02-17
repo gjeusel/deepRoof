@@ -9,7 +9,7 @@ from deeproof.common import MAINLOG
 logger = logging.getLogger(MAINLOG)
 
 
-def validate(epoch, valid_loader, model, loss_func, mlb):
+def validate(epoch, valid_loader, model, loss_func, lb):
     # Volatile variables do not save intermediate results and build graphs for backprop, achieving massive memory savings.
 
     model.eval()
@@ -21,7 +21,7 @@ def validate(epoch, valid_loader, model, loss_func, mlb):
     for batch_idx, (data, target) in enumerate(tqdm(valid_loader)):
         true_labels.append(target.cpu().numpy())
 
-        data, target = data.cuda(async=True), target.cuda(async=True)
+        # data, target = data.cuda(async=True), target.cuda(async=True)
         data, target = Variable(data, volatile=True), Variable(
             target, volatile=True)
 
@@ -36,7 +36,7 @@ def validate(epoch, valid_loader, model, loss_func, mlb):
     true_labels = np.vstack(true_labels)
 
     score, threshold = best_f2_score(true_labels, predictions)
-    logger.info("Corresponding tags\n{}".format(mlb.classes_))
+    logger.info("Corresponding tags\n{}".format(lb.classes_))
 
     logger.info(
         "===> Validation - Avg. loss: {:.4f}\tF2 Score: {:.4f}".format(avg_loss, score))

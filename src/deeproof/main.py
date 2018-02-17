@@ -10,117 +10,12 @@ import torch
 import torch.optim as optim
 import torch.nn.functional as F
 from torchvision import transforms
-from torch.utils.data import DataLoader
-from torch.utils.data.sampler import SubsetRandomSampler
 
 # Custom imports
 from deeproof.common import DATA_DIR, IMAGE_DIR, SNAPSHOT_DIR, SUBMISSION_DIR, setup_logs
-from deeproof.neuro import ResNet50, ResNet101, ResNet152
+from deeproof.neuro import ResNet50, ResNet101, ResNet152, ShortNet
 from deeproof.dataset import RoofDataset, train_valid_split
-from deeproof.train import train, snapshot
-from deeproof.validation import validate
-from deeproof.prediction import predict, write_submission_file
-
-
-class DeepRoof():
-    """Wrapper class."""
-    def __init__(self, run_name, logger,
-                 ds_transform_augmented, ds_transform_raw,
-                 batch_size=4):
-
-        self.run_name = run_name
-        self.logger = logger
-
-        # Loading the dataset
-        X_train = RoofDataset(DATA_DIR / 'train.csv', IMAGE_DIR,
-                              transform=ds_transform_augmented,
-                              )
-        X_val = RoofDataset(DATA_DIR / 'train.csv', IMAGE_DIR,
-                            transform=ds_transform_raw,
-                            )
-
-        # Creating a validation split
-        train_idx, valid_idx = train_valid_split(X_train, 0.2)
-
-        train_sampler = SubsetRandomSampler(train_idx)
-        valid_sampler = SubsetRandomSampler(valid_idx)
-
-        # Both dataloader loads from the same dataset but with different indices
-        train_loader = DataLoader(X_train,
-                                  batch_size=batch_size,
-                                  sampler=train_sampler,
-                                  num_workers=4,
-                                  # pin_memory=True,
-                                  )
-
-        valid_loader = DataLoader(X_val,
-                                  batch_size=batch_size,
-                                  sampler=valid_sampler,
-                                  num_workers=4,
-                                  # pin_memory=True,
-                                  )
-
-        self.X_train, self.X_val = X_train, X_val
-        self.train_idx, self.valid_idx = train_idx, valid_idx
-        self.train_loader, self.valid_loader = train_loader, valid_loader
-
-    def train(self, epochs, model, loss_func, optimizer):
-        best_score = 0.
-        for epoch in range(epochs):
-            epoch_timer = timer()
-
-            # Train and validate
-            train(epoch, self.train_loader, model, loss_func, optimizer)
-            score, loss, threshold = validate(
-                epoch, self.valid_loader, model, loss_func,
-                self.X_train.getLabelEncoder())
-
-            # Save
-            is_best = score > best_score
-            best_score = max(score, best_score)
-            snapshot(SNAPSHOT_DIR, self.run_name, is_best, {
-                'epoch': epoch + 1,
-                'state_dict': model.state_dict(),
-                'best_score': best_score,
-                'optimizer': optimizer.state_dict(),
-                'threshold': threshold,
-                'val_loss': loss
-            })
-
-            end_epoch_timer = timer()
-            self.logger.info("#### End epoch {}, elapsed time: {}".format(
-                epoch, end_epoch_timer - epoch_timer))
-
-    def predict(self):
-        X_test = RoofDataset(DATA_DIR / 'sample_submission.csv',
-                             IMAGE_DIR,
-                             transform=self.ds_transform_raw,
-                             )
-
-        test_loader = DataLoader(X_test,
-                                 batch_size=4,
-                                 num_workers=4,
-                                 # pin_memory=True,
-                                 )
-
-        self.X_test, self.test_loader = X_test, test_loader
-
-        # Load model from best iteration
-        self.logger.info('===> loading best model for prediction')
-        checkpoint = torch.load(
-            SNAPSHOT_DIR, self.run_name + '-model_best.pth')
-        self.model.load_state_dict(checkpoint['state_dict'])
-
-        # Predict
-        predictions = predict(test_loader, self.model)
-
-        write_submission_file(predictions,
-                              checkpoint['threshold'],
-                              self.X_test,
-                              self.X_train.getLabelEncoder(),
-                              SUBMISSION_DIR,
-                              self.run_name,
-                              checkpoint['best_score'])
+from deeproof.model import DeepRoof
 
 
 if __name__ == "__main__":
@@ -160,7 +55,7 @@ if __name__ == "__main__":
 
     # Normalization only for validation and test
     ds_transform_raw = transforms.Compose([
-        transforms.Resize(224),
+        transforms.Resize((224, 224)),
         transforms.ToTensor(),
         normalize
     ])
@@ -168,7 +63,8 @@ if __name__ == "__main__":
     dr = DeepRoof(run_name, logger, ds_transform_augmented, ds_transform_raw)
 
     ##### Model parameters: #####
-    model = ResNet50(4)
+    # model = ResNet50(4)
+    model = ShortNet((3, 224, 224))
 
     # criterion = ConvolutedLoss()
     weight = torch.Tensor([1., 1.971741, 3.972452, 1.824547])

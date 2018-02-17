@@ -16,10 +16,10 @@ def predict(test_loader, model):
 
     logger.info("Starting Prediction")
     for batch_idx, (data, _) in enumerate(tqdm(test_loader)):
-        data = data.cuda(async=True)
+        # data = data.cuda(async=True)
         data = Variable(data, volatile=True)
 
-        pred = F.sigmoid(model(data))
+        pred = F.softmax(model(data))
         predictions.append(pred.data.cpu().numpy())
 
     predictions = np.vstack(predictions)
@@ -29,21 +29,10 @@ def predict(test_loader, model):
     return predictions
 
 
-def write_submission_file(predictions, threshold, X_test, mlb,
-                          dir_path, run_name, accuracy):
-
-    raw_pred_path = os.path.join(
-        dir_path, run_name + '-raw-pred-' + str(accuracy) + '.csv')
-    np.savetxt(raw_pred_path, predictions, delimiter=";")
-    logger.info("Raw predictions saved to {}".format(raw_pred_path))
-
-    predictions = predictions > threshold
-
-    result = pd.DataFrame({
-        'image_name': X_test.X,
-        'tags': mlb.inverse_transform(predictions)
-    })
-    result['tags'] = result['tags'].apply(lambda tags: " ".join(tags))
+def write_submission_file(predictions, ids, dir_path, run_name, accuracy):
+    result = pd.DataFrame(columns=['id', 1, 2, 3, 4])
+    result['id'] = ids
+    result[[1, 2, 3, 4]] = predictions
 
     logger.info("===> Final predictions done. Here is a snippet")
     logger.info(result)

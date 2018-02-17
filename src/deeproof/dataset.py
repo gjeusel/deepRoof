@@ -23,19 +23,19 @@ class RoofDataset(Dataset):
                      [transforms.Resize(size=(64, 64)),
                       transforms.ToTensor(),
                       transforms.Normalize(mean=(0.5, 0.5, 0.5),
-                                           std=(0.5, 0.5, 0.5))])):
+                                           std=(0.5, 0.5, 0.5))]),
+                 limit_load=None):
 
-        df = pd.read_csv(csv_path)
+        df = pd.read_csv(csv_path, nrows=limit_load)
         ids_missing_mask = []
         for i, row in df.iterrows():
-            fpath = img_path / (str(row['id']) + img_ext)
+            fpath = img_path / (str(int(row['id'])) + img_ext)
             ids_missing_mask.append(fpath.exists())
         assert all(ids_missing_mask), \
             "Some images referenced in the CSV file where not found: {}".format(
                 df['id'][[not i for i in ids_missing_mask]])
 
         df = df.set_index('id').sort_index()
-        df['orientation'] = df['orientation'] - 1  # begin class id at 0
         self.df = df
 
         self.img_path = img_path
@@ -45,7 +45,10 @@ class RoofDataset(Dataset):
         self.ids = self.df.index
 
         self.lb = LabelBinarizer()
-        self.labels = self.lb.fit_transform(self.df['orientation']).astype(np.float32)
+        if 'orientation' in self.df.columns.tolist():
+            self.labels = self.lb.fit_transform(self.df['orientation']).astype(np.float32)
+        else:
+            self.labels = np.zeros(self.df.shape)
 
     def __getitem__(self, index):
         """Return data at index."""
@@ -59,6 +62,9 @@ class RoofDataset(Dataset):
 
     def __len__(self):
         return len(self.df.index)
+
+    def getLabelEncoder(self):
+        return self.lb
 
 
 def train_valid_split(dataset, test_size=0.25, shuffle=False, random_seed=0):
