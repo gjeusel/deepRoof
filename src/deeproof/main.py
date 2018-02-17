@@ -13,7 +13,7 @@ from torchvision import transforms
 
 # Custom imports
 from deeproof.common import DATA_DIR, IMAGE_DIR, SNAPSHOT_DIR, SUBMISSION_DIR, setup_logs
-from deeproof.neuro import ResNet50, ResNet101, ResNet152, ShortNet
+from deeproof.neuro import ResNet, ShortNet
 from deeproof.dataset import RoofDataset, train_valid_split
 from deeproof.model import DeepRoof
 
@@ -23,7 +23,7 @@ if __name__ == "__main__":
     global_timer = timer()
 
     # Setup logs
-    run_name = time.strftime("%Y-%m-%d_%H%M-") + "resnet50-L2reg-new-data"
+    run_name = time.strftime("%Y-%m-%d_%H%M-") + "resnet34-L2reg-new-data"
     logger = setup_logs(SNAPSHOT_DIR, run_name)
 
     # Setting random seeds for reproducibility. (Caveat, some CuDNN algorithms are non-deterministic)
@@ -38,9 +38,11 @@ if __name__ == "__main__":
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
 
+    image_size = 224
+
     # Augmentation + Normalization for full training
     ds_transform_augmented = transforms.Compose([
-        transforms.RandomResizedCrop(224),
+        transforms.RandomResizedCrop(image_size),
         # PowerPIL(),
         transforms.ToTensor(),
         # ColorJitter(), # Use PowerPIL instead, with PillowSIMD it's much more efficient
@@ -55,7 +57,7 @@ if __name__ == "__main__":
 
     # Normalization only for validation and test
     ds_transform_raw = transforms.Compose([
-        transforms.Resize((224, 224)),
+        transforms.Resize((image_size, image_size)),
         transforms.ToTensor(),
         normalize
     ])
@@ -63,8 +65,7 @@ if __name__ == "__main__":
     dr = DeepRoof(run_name, logger, ds_transform_augmented, ds_transform_raw)
 
     ##### Model parameters: #####
-    # model = ResNet50(4)
-    model = ShortNet((3, 224, 224))
+    model = ResNet(num_classes=4, resnet=50)
 
     # criterion = ConvolutedLoss()
     weight = torch.Tensor([1., 1.971741, 3.972452, 1.824547])
