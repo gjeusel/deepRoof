@@ -14,6 +14,7 @@ from torchvision import transforms
 # Custom imports
 from deeproof.common import DATA_DIR, IMAGE_DIR, SNAPSHOT_DIR, SUBMISSION_DIR, setup_logs
 from deeproof.neuro import ResNet, ShortNet
+from deeproof.metrics import SmoothF2Loss
 from deeproof.dataset import RoofDataset, train_valid_split
 from deeproof.model import DeepRoof
 
@@ -68,8 +69,9 @@ if __name__ == "__main__":
     model = ResNet(num_classes=4, resnet=50)
 
     # criterion = ConvolutedLoss()
-    weight = torch.Tensor([1., 1.971741, 3.972452, 1.824547])
-    criterion = torch.nn.MultiLabelSoftMarginLoss(weight=weight)
+    # weight = torch.Tensor([1., 1.971741, 3.972452, 1.824547])
+    # criterion = torch.nn.MultiLabelSoftMarginLoss(weight=weight)
+    criterion = SmoothF2Loss()
 
     # Note, p_training has lr_decay automated
     optimizer = optim.SGD(model.parameters(), lr=1e-2, momentum=0.9,

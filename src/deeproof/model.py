@@ -71,7 +71,7 @@ class DeepRoof():
 
             # Train and validate
             train(epoch, self.train_loader, model, loss_func, optimizer)
-            score, loss, threshold = validate(
+            score, loss = validate(
                 epoch, self.valid_loader, model, loss_func,
                 self.X_train.getLabelEncoder())
 
@@ -83,7 +83,6 @@ class DeepRoof():
                 'state_dict': model.state_dict(),
                 'best_score': best_score,
                 'optimizer': optimizer.state_dict(),
-                'threshold': threshold,
                 'val_loss': loss
             })
 

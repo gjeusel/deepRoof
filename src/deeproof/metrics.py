@@ -54,13 +54,6 @@ def best_f2_score(true_labels, predictions):
     return score, opt_output.x
 
 
-# We use real valued F2 score for training. Input can be anything between 0 and 1.
-# Threshold is not differentiable so we don't use it during training
-# We get a smooth F2 score valid for real values and not only 0/1
-def torch_f2_score(y_true, y_pred):
-    return torch_fbeta_score(y_true, y_pred, 2)
-
-
 def torch_fbeta_score(y_true, y_pred, beta, eps=1e-9):
     beta2 = beta**2
 
@@ -75,10 +68,18 @@ def torch_fbeta_score(y_true, y_pred, beta, eps=1e-9):
         div(precision.mul(beta2) + recall + eps).
         mul(1 + beta2))
 
+# We use real valued F2 score for training. Input can be anything between 0 and 1.
+# Threshold is not differentiable so we don't use it during training
+# We get a smooth F2 score valid for real values and not only 0/1
+
+
+def torch_f2_score(y_true, y_pred):
+    return torch_fbeta_score(y_true, y_pred, 2)
+
 
 class SmoothF2Loss(nn.Module):
     def __init__(self):
-        super(MeanF2Loss, self).__init__()
+        super(SmoothF2Loss, self).__init__()
 
     def forward(self, input, target):
-        return 1 - torch_f2_score(target, torch.sigmoid(input))
+        return 1 - torch_f2_score(target, F.softmax(input))
