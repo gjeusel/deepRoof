@@ -69,9 +69,10 @@ if __name__ == "__main__":
     model = ResNet(num_classes=4, resnet=50)
 
     # criterion = ConvolutedLoss()
-    # weight = torch.Tensor([1., 1.971741, 3.972452, 1.824547])
+    weight = torch.Tensor([1., 1.971741, 3.972452, 1.824547])
     # criterion = torch.nn.MultiLabelSoftMarginLoss(weight=weight)
-    criterion = SmoothF2Loss()
+    # criterion = SmoothF2Loss()
+    criterion = torch.nn.CrossEntropyLoss(weight=weight)
 
     # Note, p_training has lr_decay automated
     optimizer = optim.SGD(model.parameters(), lr=1e-2, momentum=0.9,

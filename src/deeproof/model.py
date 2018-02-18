@@ -71,9 +71,7 @@ class DeepRoof():
 
             # Train and validate
             train(epoch, self.train_loader, model, loss_func, optimizer)
-            score, loss = validate(
-                epoch, self.valid_loader, model, loss_func,
-                self.X_train.getLabelEncoder())
+            score, loss = validate(epoch, self.valid_loader, model, loss_func)
 
             # Save
             is_best = score > best_score

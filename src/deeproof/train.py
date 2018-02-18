@@ -22,9 +22,12 @@ def train(epoch, train_loader, model, loss_func, optimizer):
     model.train()
     optimizer = lr_scheduler(optimizer, epoch)
 
-    for batch_idx, (data, target) in enumerate(train_loader):
+    for batch_idx, (data, target, target_binarized) in enumerate(train_loader):
         # data, target = data.cuda(async=True), target.cuda(async=True)
-        data, target = Variable(data), Variable(target, requires_grad=False)
+        data = Variable(data)
+        target = Variable(target, requires_grad=False)
+        target_binarized = Variable(target_binarized, requires_grad=False)
+
         optimizer.zero_grad()
         output = model(data)
         loss = loss_func(output, target)

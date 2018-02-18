@@ -15,7 +15,7 @@ def predict(test_loader, model):
     predictions = []
 
     logger.info("Starting Prediction")
-    for batch_idx, (data, _) in enumerate(tqdm(test_loader)):
+    for batch_idx, (data, _, _) in enumerate(tqdm(test_loader)):
         # data = data.cuda(async=True)
         data = Variable(data, volatile=True)
 
@@ -24,8 +24,8 @@ def predict(test_loader, model):
 
     predictions = np.vstack(predictions)
 
-    logger.info("===> Raw predictions done. Here is a snippet")
-    logger.info(predictions)
+    logger.info("===> Raw predictions done")
+    # logger.info(predictions)
     return predictions
 
 
@@ -34,8 +34,8 @@ def write_submission_file(predictions, ids, dir_path, run_name, accuracy):
     result['id'] = ids
     result[[1, 2, 3, 4]] = predictions
 
-    logger.info("===> Final predictions done. Here is a snippet")
-    logger.info(result)
+    logger.info("===> Final predictions done")
+    # logger.info(result)
 
     result_path = os.path.join(
         dir_path, run_name + '-final-pred-' + str(accuracy) + '.csv')

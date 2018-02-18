@@ -46,9 +46,11 @@ class RoofDataset(Dataset):
 
         self.lb = LabelBinarizer()
         if 'orientation' in self.df.columns.tolist():
-            self.labels = self.lb.fit_transform(self.df['orientation']).astype(np.float32)
+            self.labels = self.df['orientation'].values - 1
+            self.labels_binarized = self.lb.fit_transform(self.df['orientation']).astype(np.float32)
         else:
-            self.labels = np.zeros(self.df.shape)
+            self.labels = np.zeros(self.df.shape[0])
+            self.labels_binarized = np.zeros(self.df.shape)
 
     def __getitem__(self, index):
         """Return data at index."""
@@ -57,8 +59,9 @@ class RoofDataset(Dataset):
         if self.transform is not None:
             img = self.transform(img)
 
-        label = from_numpy(self.labels[index])
-        return img, label
+        label = self.labels[index]
+        label_binarized = from_numpy(self.labels_binarized[index])
+        return img, label, label_binarized
 
     def __len__(self):
         return len(self.df.index)
