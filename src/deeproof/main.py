@@ -24,7 +24,7 @@ if __name__ == "__main__":
     global_timer = timer()
 
     # Setup logs
-    run_name = time.strftime("%Y-%m-%d_%H%M-") + "resnet34-L2reg-new-data"
+    run_name = time.strftime("%Y-%m-%d_%H%M-") + "resnet50-L2reg-new-data"
     logger = setup_logs(SNAPSHOT_DIR, run_name)
 
     # Setting random seeds for reproducibility. (Caveat, some CuDNN algorithms are non-deterministic)

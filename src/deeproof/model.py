@@ -17,6 +17,7 @@ class DeepRoof():
     def __init__(self, run_name, logger,
                  ds_transform_augmented, ds_transform_raw,
                  batch_size=4,
+                 num_workers=4,
                  sampler=SubsetRandomSampler,
                  limit_load=None):
 
@@ -49,14 +50,14 @@ class DeepRoof():
         train_loader = DataLoader(X_train,
                                   batch_size=batch_size,
                                   sampler=train_sampler,
-                                  num_workers=4,
+                                  num_workers=num_workers,
                                   # pin_memory=True,
                                   )
 
         valid_loader = DataLoader(X_val,
                                   batch_size=batch_size,
                                   sampler=valid_sampler,
-                                  num_workers=4,
+                                  num_workers=num_workers,
                                   # pin_memory=True,
                                   )
 
@@ -90,7 +91,7 @@ class DeepRoof():
 
         self.model = model
 
-    def predict(self, batch_size=4, limit_load=None):
+    def predict(self, batch_size=4, num_workers=4, limit_load=None):
         X_test = RoofDataset(DATA_DIR / 'sample_submission.csv',
                              IMAGE_DIR,
                              transform=self.ds_transform_raw,
@@ -99,7 +100,7 @@ class DeepRoof():
 
         test_loader = DataLoader(X_test,
                                  batch_size=batch_size,
-                                 num_workers=4,
+                                 num_workers=num_workers,
                                  # pin_memory=True,
                                  )
 
