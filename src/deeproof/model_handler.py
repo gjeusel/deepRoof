@@ -12,7 +12,7 @@ from deeproof.validation import validate
 from deeproof.prediction import predict, write_submission_file
 
 
-class DeepRoof():
+class DeepRoofHandler():
     """Wrapper class."""
     def __init__(self, run_name, logger,
                  ds_transform_augmented, ds_transform_raw,

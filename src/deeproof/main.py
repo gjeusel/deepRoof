@@ -16,7 +16,7 @@ from deeproof.common import DATA_DIR, IMAGE_DIR, SNAPSHOT_DIR, SUBMISSION_DIR, s
 from deeproof.neuro import ResNet, ShortNet
 from deeproof.metrics import SmoothF2Loss
 from deeproof.dataset import RoofDataset, train_valid_split
-from deeproof.model import DeepRoof
+from deeproof.model_handler import DeepRoofHandler
 
 
 if __name__ == "__main__":
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         normalize
     ])
 
-    dr = DeepRoof(run_name, logger, ds_transform_augmented, ds_transform_raw)
+    dr = DeepRoofHandler(run_name, logger, ds_transform_augmented, ds_transform_raw)
 
     ##### Model parameters: #####
     model = ResNet(num_classes=4, resnet=50)
