@@ -7,22 +7,24 @@ from torch.utils.data.sampler import SubsetRandomSampler
 
 from deeproof.common import DATA_DIR, IMAGE_DIR, SNAPSHOT_DIR, SUBMISSION_DIR, setup_logs
 from deeproof.dataset import RoofDataset, train_valid_split
-from deeproof.train import train, snapshot
+from deeproof.train import train
 from deeproof.validation import validate
 from deeproof.prediction import predict, write_submission_file
+from deeproof.database_models import DataBaseModels
 
 
 class DeepRoofHandler():
     """Wrapper class."""
-    def __init__(self, run_name, logger,
+
+    def __init__(self, logger,
                  ds_transform_augmented, ds_transform_raw,
                  batch_size=4,
                  num_workers=4,
                  sampler=SubsetRandomSampler,
                  limit_load=None):
 
-        self.run_name = run_name
         self.logger = logger
+        self.dbmodel = DataBaseModels()
 
         self.ds_transform_augmented = ds_transform_augmented
         self.ds_transform_raw = ds_transform_raw
@@ -65,9 +67,29 @@ class DeepRoofHandler():
         self.train_idx, self.valid_idx = train_idx, valid_idx
         self.train_loader, self.valid_loader = train_loader, valid_loader
 
-    def train(self, epochs, model, loss_func, optimizer):
+    def train(self, epochs, model, loss_func, optimizer,
+              resume_training_if_exists=True,
+              record_model=True):
+        """Train or continue training."""
+
+        if resume_training_if_exists:
+            model_exists = self.dbmodel.model_exists(
+                model, optimizer, loss_func,
+                self.ds_transform_augmented,
+                self.ds_transform_raw)
+            if model_exists:
+                id_model = self.dbmodel.get_id_model(model, optimizer, loss_func,
+                                                     self.ds_transform_augmented,
+                                                     self.ds_transform_raw)
+                model_state_dict, optimizer_state_dict, epoch_start = \
+                    self.dbmodel.get_existing_cnn(id_model)
+                model.load_state_dict(model_state_dict)
+                optimizer.load_state_dict(optimizer_state_dict)
+            else:
+                epoch_start = 0
+
         best_score = 0.
-        for epoch in range(epochs):
+        for epoch in range(epoch_start, epochs):
             epoch_timer = timer()
 
             # Train and validate
@@ -77,13 +99,12 @@ class DeepRoofHandler():
             # Save
             is_best = score > best_score
             best_score = max(score, best_score)
-            snapshot(SNAPSHOT_DIR, self.run_name, is_best, {
-                'epoch': epoch + 1,
-                'state_dict': model.state_dict(),
-                'best_score': best_score,
-                'optimizer': optimizer.state_dict(),
-                'val_loss': loss
-            })
+
+            if is_best and record_model:
+                self.dbmodel.save_model(model, epoch+1, best_score, loss,
+                                        optimizer, loss_func,
+                                        self.ds_transform_augmented,
+                                        self.ds_transform_raw)
 
             end_epoch_timer = timer()
             self.logger.info("#### End epoch {}, elapsed time: {}".format(

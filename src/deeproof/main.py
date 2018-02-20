@@ -24,7 +24,7 @@ if __name__ == "__main__":
     global_timer = timer()
 
     # Setup logs
-    run_name = time.strftime("%Y-%m-%d_%H%M-") + "resnet50-L2reg-new-data"
+    run_name = time.strftime("%Y-%m-%d_%H%M-") + "resnet18"
     logger = setup_logs(SNAPSHOT_DIR, run_name)
 
     # Setting random seeds for reproducibility. (Caveat, some CuDNN algorithms are non-deterministic)
@@ -63,10 +63,10 @@ if __name__ == "__main__":
         normalize
     ])
 
-    dr = DeepRoofHandler(run_name, logger, ds_transform_augmented, ds_transform_raw)
+    dr = DeepRoofHandler(logger, ds_transform_augmented, ds_transform_raw)
 
     ##### Model parameters: #####
-    model = ResNet(num_classes=4, resnet=50)
+    model = ResNet(num_classes=4, resnet=18)
 
     # criterion = ConvolutedLoss()
     weight = torch.Tensor([1., 1.971741, 3.972452, 1.824547])

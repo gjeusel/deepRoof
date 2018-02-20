@@ -37,11 +37,3 @@ def train(epoch, train_loader, model, loss_func, optimizer):
             logger.info('Train Epoch: {:03d} [{:05d}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, batch_idx * len(data), len(train_loader) * len(data),
                 100. * batch_idx / len(train_loader), loss.data[0]))
-
-
-def snapshot(dir_path, run_name, is_best, state):
-    """Save state."""
-    snapshot_file = dir_path / (run_name + '-model_best.pth')
-    if is_best:
-        torch.save(state, snapshot_file.as_posix())
-        logger.info("Snapshot saved to {}".format(snapshot_file.as_posix()))

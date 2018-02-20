@@ -10,20 +10,20 @@ import torch.nn.functional as F
 # ResNet fine-tuning
 class ResNet(nn.Module):
     # We use ResNet weights from PyCaffe.
-    def __init__(self, num_classes, resnet=34):
+    def __init__(self, num_classes, resnet=34, pretrained=False):
         super(ResNet, self).__init__()
 
         # Loading ResNet arch from PyTorch and weights from Pycaffe
         if resnet == 18:
-            original_model = models.resnet18(pretrained=False)
+            original_model = models.resnet18(pretrained=pretrained)
         elif resnet == 34:
-            original_model = models.resnet34(pretrained=False)
+            original_model = models.resnet34(pretrained=pretrained)
         elif resnet == 50:
-            original_model = models.resnet50(pretrained=False)
+            original_model = models.resnet50(pretrained=pretrained)
         elif resnet == 101:
-            original_model = models.resnet101(pretrained=False)
+            original_model = models.resnet101(pretrained=pretrained)
         elif resnet == 152:
-            original_model = models.resnet152(pretrained=False)
+            original_model = models.resnet152(pretrained=pretrained)
         else:
             raise ValueError('ResNet n°{} is unknown.'.format(resnet))
 
