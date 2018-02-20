@@ -13,7 +13,8 @@ from torchvision import transforms
 
 # Custom imports
 from deeproof.common import DATA_DIR, IMAGE_DIR, SNAPSHOT_DIR, SUBMISSION_DIR, setup_logs
-from deeproof.neuro import ResNet, ShortNet
+from deeproof.neuro.handcraft import ResNet, ShortNet
+from deeproof.neuro.dpn import DPN26
 from deeproof.metrics import SmoothF2Loss
 from deeproof.dataset import RoofDataset, train_valid_split
 from deeproof.model_handler import DeepRoofHandler
@@ -66,7 +67,8 @@ if __name__ == "__main__":
     dr = DeepRoofHandler(logger, ds_transform_augmented, ds_transform_raw)
 
     ##### Model parameters: #####
-    model = ResNet(num_classes=4, resnet=18)
+    # model = ResNet(num_classes=4, resnet=18)
+    model = DPN26()
 
     # criterion = ConvolutedLoss()
     weight = torch.Tensor([1., 1.971741, 3.972452, 1.824547])

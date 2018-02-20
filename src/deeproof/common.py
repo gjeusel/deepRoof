@@ -31,20 +31,20 @@ CLASSES = {
 }
 
 
-def get_images_ids():
-    """Get the IDs from the file names in the IMAGE_DIR directory."""
-    images_files = [f.as_posix() for f in IMAGE_DIR.iterdir()]
-    # Extract the image IDs from the file names. They will serve as an index later
-    image_ids = [int(re.sub(r'(^.*/|\.jpg)', '', fname))
-                 for fname in images_files]
-    return image_ids
+# def get_images_ids():
+#     """Get the IDs from the file names in the IMAGE_DIR directory."""
+#     images_files = [f.as_posix() for f in IMAGE_DIR.iterdir()]
+#     # Extract the image IDs from the file names. They will serve as an index later
+#     image_ids = [int(re.sub(r'(^.*/|\.jpg)', '', fname))
+#                  for fname in images_files]
+#     return image_ids
 
 
-ALL_IDS = pd.Index(get_images_ids())
+# ALL_IDS = pd.Index(get_images_ids())
 
-DF_REFS = pd.read_csv(DATA_DIR / 'train.csv', index_col='id')
-IDS_LABELED = DF_REFS.index
-IDS_SUBMIT = ALL_IDS.difference(IDS_LABELED)
+# DF_REFS = pd.read_csv(DATA_DIR / 'train.csv', index_col='id')
+# IDS_LABELED = DF_REFS.index
+# IDS_SUBMIT = ALL_IDS.difference(IDS_LABELED)
 
 
 MAINLOG = "DeepRoof"
