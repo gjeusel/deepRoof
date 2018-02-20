@@ -81,8 +81,11 @@ if __name__ == "__main__":
     # Training:
     dr.train(epochs=16, model=model, loss_func=criterion, optimizer=optimizer)
 
-    # Predict:
-    dr.predict()
+
+    # Predict
+    id_model = dr.dbmodel.get_id_model(model, optimizer, criterion,
+                                       ds_transform_augmented, ds_transform_raw)
+    dr.predict(id_model, model)
 
     end_global_timer = timer()
     logger.info("################## Success #########################")

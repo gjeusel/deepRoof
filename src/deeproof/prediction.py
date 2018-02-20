@@ -29,7 +29,7 @@ def predict(test_loader, model):
     return predictions
 
 
-def write_submission_file(predictions, ids, dir_path, run_name, accuracy):
+def write_submission_file(predictions, ids, dir_path, id_model, best_score):
     result = pd.DataFrame(columns=['id', 1, 2, 3, 4])
     result['id'] = ids
     result[[1, 2, 3, 4]] = predictions
@@ -37,7 +37,6 @@ def write_submission_file(predictions, ids, dir_path, run_name, accuracy):
     logger.info("===> Final predictions done")
     # logger.info(result)
 
-    result_path = os.path.join(
-        dir_path, run_name + '-final-pred-' + str(accuracy) + '.csv')
-    result.to_csv(result_path, index=False)
-    logger.info("Final predictions saved to {}".format(result_path))
+    fname_result = dir_path / (str(id_model) + '-final-pred-' + str(best_score) + '.csv')
+    result.to_csv(fname_result.as_posix(), index=False)
+    logger.info("Final predictions saved to {}".format(fname_result.as_posix()))

@@ -41,6 +41,7 @@ class DeepRoofHandler():
 
         # Creating a validation split
         train_idx, valid_idx = train_valid_split(X_train, 0.2)
+        train_idx = range(len(X_train))
 
         if sampler is not None:
             train_sampler = SubsetRandomSampler(train_idx)
@@ -112,7 +113,7 @@ class DeepRoofHandler():
 
         self.model = model
 
-    def predict(self, batch_size=4, num_workers=4, limit_load=None):
+    def predict(self, id_model, model, batch_size=4, num_workers=4, limit_load=None):
         X_test = RoofDataset(DATA_DIR / 'sample_submission.csv',
                              IMAGE_DIR,
                              transform=self.ds_transform_raw,
@@ -129,9 +130,9 @@ class DeepRoofHandler():
 
         # Load model from best iteration
         self.logger.info('===> loading best model for prediction')
-        fpath = SNAPSHOT_DIR / (self.run_name + '-model_best.pth')
-        checkpoint = torch.load(fpath.as_posix())
-        self.model.load_state_dict(checkpoint['state_dict'])
+        model_state_dict, optimizer_state_dict, epoch_start = \
+            self.dbmodel.get_existing_cnn(id_model)
+        model.load_state_dict(model_state_dict)
 
         # Predict
         predictions = predict(test_loader, self.model)
@@ -139,5 +140,6 @@ class DeepRoofHandler():
         write_submission_file(predictions,
                               self.X_test.ids,
                               SUBMISSION_DIR,
-                              self.run_name,
-                              checkpoint['best_score'])
+                              id_model,
+                              self.dbmodel.df.loc[0]['best_score'],
+                              )
