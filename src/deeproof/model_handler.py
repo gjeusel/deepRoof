@@ -135,7 +135,7 @@ class DeepRoofHandler():
         model.load_state_dict(model_state_dict)
 
         # Predict
-        predictions = predict(test_loader, self.model)
+        predictions = predict(test_loader, model)
 
         write_submission_file(predictions,
                               self.X_test.ids,

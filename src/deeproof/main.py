@@ -67,8 +67,8 @@ if __name__ == "__main__":
     dr = DeepRoofHandler(logger, ds_transform_augmented, ds_transform_raw)
 
     ##### Model parameters: #####
-    # model = ResNet(num_classes=4, resnet=18)
-    model = DPN26()
+    model = ResNet(num_classes=4, resnet=18)
+    # model = DPN26()
 
     # criterion = ConvolutedLoss()
     weight = torch.Tensor([1., 1.971741, 3.972452, 1.824547])
@@ -81,7 +81,7 @@ if __name__ == "__main__":
                           weight_decay=0.0005)  # Finetuning whole model
 
     # Training:
-    dr.train(epochs=16, model=model, loss_func=criterion, optimizer=optimizer)
+    dr.train(epochs=45, model=model, loss_func=criterion, optimizer=optimizer)
 
 
     # Predict
