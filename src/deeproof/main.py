@@ -45,16 +45,12 @@ if __name__ == "__main__":
     # Augmentation + Normalization for full training
     ds_transform_augmented = transforms.Compose([
         transforms.RandomResizedCrop(image_size),
-        # PowerPIL(),
+        transforms.RandomHorizontalFlip(),
+        transforms.RandomVerticalFlip(),
+        transforms.ColorJitter(),  # Randomly change the brightness, contrast and saturation of an image.
+        transforms.RandomRotation(10),
         transforms.ToTensor(),
-        # ColorJitter(), # Use PowerPIL instead, with PillowSIMD it's much more efficient
         normalize,
-        # Affine(
-        #    rotation_range = 15,
-        #    translation_range = (0.2,0.2),
-        #    shear_range = math.pi/6,
-        #    zoom_range=(0.7,1.4)
-        # )
     ])
 
     # Normalization only for validation and test
@@ -67,7 +63,8 @@ if __name__ == "__main__":
     dr = DeepRoofHandler(logger, ds_transform_augmented, ds_transform_raw)
 
     ##### Model parameters: #####
-    model = ResNet(num_classes=4, resnet=18)
+    # model = ResNet(num_classes=4, resnet=18)
+    model = ResNet(num_classes=4, resnet=50)
     # model = DPN26()
 
     # criterion = ConvolutedLoss()
